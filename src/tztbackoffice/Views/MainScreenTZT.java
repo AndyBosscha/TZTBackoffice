@@ -5,6 +5,8 @@
  */
 package tztbackoffice.Views;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +27,7 @@ import javax.swing.JTextField;
 public class MainScreenTZT extends JFrame implements ActionListener {
 
     private JPanel mainScreen;
+    private JPanel topBar;
     private JLabel nameLabel;
     private JLabel medewerkerNrLabel;
     private JLabel woonplaatsLabel;
@@ -39,27 +42,38 @@ public class MainScreenTZT extends JFrame implements ActionListener {
         setTitle("TZT Backoffice");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        
         mainScreen = new JPanel();
-        add(mainScreen);
-        mainScreen.setLayout(new GridLayout(1, 8, 5, 5));
-        nameLabel = new JLabel();
-        mainScreen.add(nameLabel);
-        medewerkerNrLabel = new JLabel();
-        mainScreen.add(medewerkerNrLabel);
-        woonplaatsLabel = new JLabel();
-        mainScreen.add(woonplaatsLabel);
-        statusLabel = new JLabel();
-        mainScreen.add(statusLabel);
+        topBar = new JPanel();
+        topBar.setPreferredSize(new Dimension(this.getWidth(), 50));
+        topBar.setLayout(new FlowLayout());
+        //mainScreen.setLayout(new GridLayout(1, 8, 5, 5));
+        nameLabel = new JLabel("Naam");
+        nameLabel.setPreferredSize(new Dimension(100, 40));
+        topBar.add(nameLabel);
         nameTextfield = new JTextField();
-        mainScreen.add(nameTextfield);
+        topBar.add(nameTextfield);
+                
+        medewerkerNrLabel = new JLabel("Medewerkernr");
+        topBar.add(medewerkerNrLabel);
         medewerkerNrTextfield = new JTextField();
-        mainScreen.add(medewerkerNrTextfield);
+        topBar.add(medewerkerNrTextfield);
+        
+        woonplaatsLabel = new JLabel("Woonplaats");
+        topBar.add(woonplaatsLabel);
         woonplaatsTextfield = new JTextField();
-        mainScreen.add(woonplaatsTextfield);
+        topBar.add(woonplaatsTextfield);
+        
+        statusLabel = new JLabel("Status");
+        topBar.add(statusLabel);
         statusCombobox = new JComboBox();
-        mainScreen.add(statusCombobox);
-
+        topBar.add(statusCombobox);
+        
+        
+        
+        add(topBar);
+        
+//        
 //        String[] columns = new String[]{
 //            "Id", "Name", "Hourly Rate", "Part Time"
 //        };
@@ -68,8 +82,10 @@ public class MainScreenTZT extends JFrame implements ActionListener {
 //            {2, "Rambo", 70.0, false},
 //            {3, "Zorro", 60.0, true},};
 //        JTable table = new JTable(data, columns);
-//        this.add(new JScrollPane(table));
+//        mainScreen.add(new JScrollPane(table));
 //
+//        add(mainScreen);
+
         setVisible(true);
     }
 
