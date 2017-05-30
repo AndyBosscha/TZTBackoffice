@@ -32,6 +32,7 @@ public class LoginScreen extends JFrame implements ActionListener {
     private JPanel loginFormContainer;
     private LoginController loginController;
     private ForgotUsernameScreen fus;
+    private ForgotPasswordScreen fps;
 
     public LoginScreen() {
         setSize(600, 200);
@@ -60,6 +61,10 @@ public class LoginScreen extends JFrame implements ActionListener {
         fus = new ForgotUsernameScreen(this);
         fus.setVisible(false);
         fus.setModal(false);
+
+        fps = new ForgotPasswordScreen(this);
+        fps.setVisible(false);
+        fps.setModal(false);
 
         loginFormContainer.setMaximumSize(new Dimension(400, 400));
 
@@ -99,15 +104,10 @@ public class LoginScreen extends JFrame implements ActionListener {
 
     }
 
-    private void forgotPassword() {
-        String textFieldValue = usernameTextField.getText();
-        if ("".equals(textFieldValue)) {
-            notificationLabel.setText("Vul uw e-mailadres in");
-            repaint();
-        } else {
-            notificationLabel.setText("");
-        }
-        repaint();
+    private void openForgotPasswordScreen() {
+        fps.setVisible(true);
+        fps.setModal(true);
+        this.setVisible(false);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class LoginScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == forgotPasswordButton) {
-            forgotPassword();
+            openForgotPasswordScreen();
         }
 
         if (e.getSource() == forgotUsernameButton) {
