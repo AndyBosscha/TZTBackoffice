@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tztbackoffice;
+package tztbackoffice.Views;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
+import tztbackoffice.Controllers.LoginController;
 
 /**
  *
