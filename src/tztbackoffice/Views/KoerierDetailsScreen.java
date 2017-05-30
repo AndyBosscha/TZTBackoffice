@@ -29,7 +29,7 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener{
     
     public void showAndChangeSelectedKoerier(KoerierModel newSelectedKoerier){
         selectedKoerier = newSelectedKoerier;
+        System.out.println(selectedKoerier.getStatus());
         setVisible(true);
-        repaint();
     }
 }

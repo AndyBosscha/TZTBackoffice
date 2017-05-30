@@ -121,7 +121,7 @@ public class MainScreenTZT extends JFrame implements ActionListener {
         table.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
                 JTable table = (JTable) me.getSource();
-                Point p = me.getPoint();
+                Point p = me.getPoint(); 
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
                     selectedKoerier.setFirstName(table.getValueAt(row, 0).toString());
@@ -133,7 +133,6 @@ public class MainScreenTZT extends JFrame implements ActionListener {
                     selectedKoerier.setAmountOfDeliveredPackages(Integer.parseInt(table.getValueAt(row, 6).toString()));
                     selectedKoerier.setStatus(table.getValueAt(row, 7).toString());
                     koerierDetailsScreen.showAndChangeSelectedKoerier(selectedKoerier);
-                   
                 }
             }
         });
