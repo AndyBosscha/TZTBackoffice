@@ -41,13 +41,9 @@ public class MainScreenTZT extends JFrame implements ActionListener {
     private JTextField medewerkerNrTextfield;
     private JTextField woonplaatsTextfield;
     private JComboBox statusCombobox;
-<<<<<<< Updated upstream
-    
-=======
     private KoerierModel selectedKoerier;
     private KoerierDetailsScreen koerierDetailsScreen;
 
->>>>>>> Stashed changes
     public MainScreenTZT() {
         selectedKoerier = new KoerierModel();
         koerierDetailsScreen = new KoerierDetailsScreen();
