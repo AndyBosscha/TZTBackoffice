@@ -42,7 +42,7 @@ public class MainScreenTZT extends JFrame implements ActionListener {
 
         mainScreen = new JPanel();
         add(mainScreen);
-        mainScreen.setLayout(new GridLayout(8, 1, 5, 5));
+        mainScreen.setLayout(new GridLayout(1, 8, 5, 5));
         nameLabel = new JLabel();
         mainScreen.add(nameLabel);
         medewerkerNrLabel = new JLabel();
