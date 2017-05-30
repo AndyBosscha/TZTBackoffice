@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import tztbackoffice.Models.KoerierModel;
 
 /**
  *
@@ -40,8 +41,16 @@ public class MainScreenTZT extends JFrame implements ActionListener {
     private JTextField medewerkerNrTextfield;
     private JTextField woonplaatsTextfield;
     private JComboBox statusCombobox;
+<<<<<<< Updated upstream
     
+=======
+    private KoerierModel selectedKoerier;
+    private KoerierDetailsScreen koerierDetailsScreen;
+
+>>>>>>> Stashed changes
     public MainScreenTZT() {
+        selectedKoerier = new KoerierModel();
+        koerierDetailsScreen = new KoerierDetailsScreen();
         setSize(1200, 700);
         setTitle("TZT Backoffice");
         setLocationRelativeTo(null);
@@ -119,7 +128,16 @@ public class MainScreenTZT extends JFrame implements ActionListener {
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-                    System.out.println("2");
+                    selectedKoerier.setFirstName(table.getValueAt(row, 0).toString());
+                    selectedKoerier.setIdUser(Integer.parseInt(table.getValueAt(row, 1).toString()));
+                    selectedKoerier.setCity(table.getValueAt(row, 2).toString());
+                    selectedKoerier.setDateOfBirth(table.getValueAt(row, 3).toString());
+                    selectedKoerier.setStartDate(table.getValueAt(row, 4).toString());
+                    selectedKoerier.setAmountOfAcceptedPackages(Integer.parseInt(table.getValueAt(row, 5).toString()));
+                    selectedKoerier.setAmountOfDeliveredPackages(Integer.parseInt(table.getValueAt(row, 6).toString()));
+                    selectedKoerier.setStatus(table.getValueAt(row, 7).toString());
+                    koerierDetailsScreen.showAndChangeSelectedKoerier(selectedKoerier);
+                   
                 }
             }
         });
