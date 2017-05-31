@@ -23,7 +23,7 @@ import tztbackoffice.Models.KoerierModel;
  *
  * @author Andy
  */
-public class KoerierDetailsScreen extends JDialog implements ActionListener{
+public class KoerierDetailsScreen extends JDialog implements ActionListener {
     
     private KoerierModel selectedKoerier;
     private JLabel nameLabel = new JLabel("Naam");
@@ -71,17 +71,30 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener{
     private JButton blockButton = new JButton("Blokkeren");
     private JButton cancelButton = new JButton("Annuleren");
     
-    
     private JPanel leftPanel;
     private JPanel rightPanel;
     private JPanel bottomBar;
-        
-    public KoerierDetailsScreen(){
+    
+    public KoerierDetailsScreen() {
         setLayout(new FlowLayout());
         setSize(windowWidth, windowHeight);
         
         leftPanel = new JPanel();
-        leftPanel.setLayout(new GridLayout(12,2, 30, 30));
+        leftPanel.setLayout(new GridLayout(12, 2, 30, 30));
+        
+        nameField.setEnabled(false);
+        additionalNameField.setEnabled(false);
+        lastNameField.setEnabled(false);
+        sexBox.setEnabled(false);
+        dateOfBirthField.setEnabled(false);
+        houseNumberField.setEnabled(false);
+        zipCodeFIeld.setEnabled(false);
+        addressField.setEnabled(false);
+        cityField.setEnabled(false);
+        phoneNumberField.setEnabled(false);
+        emailField.setEnabled(false);
+        bankNumberField.setEnabled(false);
+        
         leftPanel.add(nameLabel);
         leftPanel.add(nameField);
         leftPanel.add(additionalNameLabel);
@@ -107,11 +120,15 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener{
         leftPanel.add(bankNumberLabel);
         leftPanel.add(bankNumberField);
         
-        leftPanel.setPreferredSize(new Dimension(windowWidth/2-10, windowHeight-bottomBarHeight));
+        leftPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
         add(leftPanel);
         
         rightPanel = new JPanel();
-        rightPanel.setLayout(new GridLayout(5,2,30,30));
+        rightPanel.setLayout(new GridLayout(5, 2, 30, 30));
+        
+        statusField.setEnabled(false);
+        koerierNrField.setEnabled(false);
+        
         rightPanel.add(photoLabel);
         rightPanel.add(photoPanel);
         rightPanel.add(resumeLabel);
@@ -123,11 +140,19 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener{
         rightPanel.add(koerierNrLabel);
         rightPanel.add(koerierNrField);
         
-        rightPanel.setPreferredSize(new Dimension(windowWidth/2-10, windowHeight-bottomBarHeight));
+        rightPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
         add(rightPanel);
         
         bottomBar = new JPanel();
         bottomBar.setLayout(new FlowLayout());
+        
+        acceptButton.addActionListener(this);
+        declineButton.addActionListener(this);
+        editButton.addActionListener(this);
+        historyButton.addActionListener(this);
+        blockButton.addActionListener(this);
+        cancelButton.addActionListener(this);
+        
         bottomBar.add(acceptButton);
         bottomBar.add(declineButton);
         bottomBar.add(editButton);
@@ -145,10 +170,31 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
+        if (e.getSource() == acceptButton) {
+            
+        }
+        
+        if (e.getSource() == declineButton) {
+            
+        }
+        
+        if (e.getSource() == editButton) {
+            
+        }
+        if (e.getSource() == historyButton) {
+            
+        }
+        if (e.getSource() == blockButton) {
+            
+        }
+        if (e.getSource() == cancelButton) {
+            this.setVisible(false);
+        }
+        
     }
     
-    public void showAndChangeSelectedKoerier(KoerierModel newSelectedKoerier){
+    public void showAndChangeSelectedKoerier(KoerierModel newSelectedKoerier) {
         selectedKoerier = newSelectedKoerier;
         nameField.setText(selectedKoerier.getFirstName());
         additionalNameField.setText((selectedKoerier.getMiddleName()));
