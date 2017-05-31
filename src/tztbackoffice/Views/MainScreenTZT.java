@@ -24,13 +24,14 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import tztbackoffice.Models.KoerierModel;
+import javax.swing.JTabbedPane;
 
 /**
  *
  * @author Andy
  */
 public class MainScreenTZT extends JFrame implements ActionListener {
-    
+
     private JPanel mainScreen;
     private JPanel topBar;
     private JLabel nameLabel;
@@ -63,29 +64,29 @@ public class MainScreenTZT extends JFrame implements ActionListener {
         nameTextfield = new JTextField();
         nameTextfield.setPreferredSize(new Dimension(100, 30));
         topBar.add(nameTextfield);
-        
+
         medewerkerNrLabel = new JLabel("Medewerkernr");
         topBar.add(medewerkerNrLabel);
         medewerkerNrTextfield = new JTextField();
         medewerkerNrTextfield.setPreferredSize(new Dimension(100, 30));
         topBar.add(medewerkerNrTextfield);
-        
+
         woonplaatsLabel = new JLabel("Woonplaats");
         topBar.add(woonplaatsLabel);
         woonplaatsTextfield = new JTextField();
         woonplaatsTextfield.setPreferredSize(new Dimension(100, 30));
         topBar.add(woonplaatsTextfield);
-        
+
         statusLabel = new JLabel("Status");
         topBar.add(statusLabel);
         String[] comboBoxList = {"Nieuw", "Actief", "Inactief"};
         statusCombobox = new JComboBox(comboBoxList);
         statusCombobox.setPreferredSize(new Dimension(100, 30));
-        
+
         topBar.add(statusCombobox);
         topBar.add(filterButton);
         add(topBar);
-        
+
         String[] columns = new String[]{
             "Naam", "Medewerkernr", "Woonplaats", "Geboortedatum", "Datum in dienst", "Aantal opdrachten aangenomen", "Aantal pakketten bezorgd", "Status"
         };
@@ -115,13 +116,13 @@ public class MainScreenTZT extends JFrame implements ActionListener {
                 return false;
             }
         };
-        
+
         table.setAutoCreateRowSorter(true);
-        
+
         table.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
                 JTable table = (JTable) me.getSource();
-                Point p = me.getPoint(); 
+                Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
                     selectedKoerier.setFirstName(table.getValueAt(row, 0).toString());
@@ -136,17 +137,17 @@ public class MainScreenTZT extends JFrame implements ActionListener {
                 }
             }
         });
-        
+
         mainScreen.setPreferredSize(new Dimension(1150, 875));
         mainScreen.setBackground(Color.red);
         mainScreen.add(new JScrollPane(table));
         add(mainScreen);
-        
+
         setVisible(true);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
     }
-    
+
 }
