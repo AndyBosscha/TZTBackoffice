@@ -77,6 +77,9 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
         bezorgdComboBox.setPreferredSize(new Dimension(100, 30));
         topBar.add(bezorgdComboBox);
 
+        filterButton = new JButton("Filter");
+        topBar.add(filterButton);
+
         add(topBar);
         setVisible(true);
 

@@ -22,11 +22,12 @@ import javax.swing.JTextField;
  * @author Andy
  */
 public class PackageDetailScreen extends JDialog implements ActionListener {
-    private int windowHeight = 900, windowWidth = 1200, bottomBarHeight = 80;
+
+    private int windowHeight = 900, windowWidth = 800, bottomBarHeight = 80;
     private JLabel tracenumberLabel = new JLabel("Tracenummer");
     private JLabel afzenderLabel = new JLabel("Afzender");
-    private JLabel afzenderVoornaamLabel = new JLabel("Voornaam");
-    private JLabel afzenderAchternaamLabel = new JLabel("Achternaam");
+    private JLabel afzenderVoornaamLabel = new JLabel("Voornaam Afzender");
+    private JLabel afzenderAchternaamLabel = new JLabel("Achternaam Afzender");
     private JLabel afkomstLabel = new JLabel("Afkomst");
     private JLabel afkomstStraatnaamHuisnrLabel = new JLabel("Straatnaam + huisnr");
     private JLabel afkomstPostcodeLabel = new JLabel("Postcode");
@@ -77,26 +78,51 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
     public PackageDetailScreen() {
         setSize(windowWidth, windowHeight);
         setLayout(new FlowLayout());
+        setResizable(false);
+        setLocationRelativeTo(null);
         JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new GridLayout(13,2,30,30));
-        leftPanel.setPreferredSize(new Dimension(windowWidth/2-10, windowHeight-bottomBarHeight));
-        leftPanel.setBackground(Color.red);
-        
-        
+        leftPanel.setLayout(new GridLayout(13, 2, 30, 30));
+//        leftPanel.setLayout(new FlowLayout());
+        leftPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
+//        leftPanel.setBackground(Color.red);
+
+        tracenummerTextfield.setPreferredSize(new Dimension(200, 30));
+        afzenderVoornaamTextfield.setPreferredSize(new Dimension(200, 30));
+        afzenderVoornaamTextfield.setPreferredSize(new Dimension(200, 30));
+        afzenderAchternaamTextfield.setPreferredSize(new Dimension(200, 30));
+        afkomstStraatnaamTextfield.setPreferredSize(new Dimension(200, 30));
+        afkomstStraatnaamTextfield.setPreferredSize(new Dimension(200, 30));
+        afkomstHuisnummerTextfield.setPreferredSize(new Dimension(200, 30));
+        afkomstPostcodeTextfield.setPreferredSize(new Dimension(200, 30));
+
+        leftPanel.add(tracenumberLabel);
+        leftPanel.add(tracenummerTextfield);
+        leftPanel.add(afzenderVoornaamLabel);
+        leftPanel.add(afzenderVoornaamTextfield);
+        leftPanel.add(afzenderAchternaamLabel);
+        leftPanel.add(afzenderAchternaamTextfield);
+        leftPanel.add(afkomstStraatnaamHuisnrLabel);
+        leftPanel.add(afkomstStraatnaamTextfield);
+        leftPanel.add(afkomstStraatnaamHuisnrLabel);
+        leftPanel.add(afkomstHuisnummerTextfield);
+        leftPanel.add(afkomstPostcodeLabel);
+        leftPanel.add(afkomstPostcodeTextfield);
+        leftPanel.add(afkomstWoonplaatsLabel);
+
         JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new GridLayout(13,2,30,30));
-        rightPanel.setPreferredSize(new Dimension(windowWidth/2-10, windowHeight-bottomBarHeight));
+        rightPanel.setLayout(new GridLayout(13, 2, 30, 30));
+        rightPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
         rightPanel.setBackground(Color.blue);
-        
+
         JPanel bottomBar = new JPanel();
         bottomBar.setLayout(new FlowLayout());
         bottomBar.setPreferredSize(new Dimension(windowWidth, bottomBarHeight));
         bottomBar.setBackground(Color.yellow);
-        
+
         add(leftPanel);
         add(rightPanel);
         add(bottomBar);
-        
+
     }
 
     @Override
