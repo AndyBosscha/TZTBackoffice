@@ -5,10 +5,16 @@
  */
 package tztbackoffice.Views;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -16,7 +22,7 @@ import javax.swing.JTextField;
  * @author Andy
  */
 public class PackageDetailScreen extends JDialog implements ActionListener {
-
+    private int windowHeight = 900, windowWidth = 1200, bottomBarHeight = 80;
     private JLabel tracenumberLabel = new JLabel("Tracenummer");
     private JLabel afzenderLabel = new JLabel("Afzender");
     private JLabel afzenderVoornaamLabel = new JLabel("Voornaam");
@@ -69,11 +75,37 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
     private JTextField verzendkostenTextfield = new JTextField();
 
     public PackageDetailScreen() {
-
+        setSize(windowWidth, windowHeight);
+        setLayout(new FlowLayout());
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new GridLayout(13,2,30,30));
+        leftPanel.setPreferredSize(new Dimension(windowWidth/2-10, windowHeight-bottomBarHeight));
+        leftPanel.setBackground(Color.red);
+        
+        
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new GridLayout(13,2,30,30));
+        rightPanel.setPreferredSize(new Dimension(windowWidth/2-10, windowHeight-bottomBarHeight));
+        rightPanel.setBackground(Color.blue);
+        
+        JPanel bottomBar = new JPanel();
+        bottomBar.setLayout(new FlowLayout());
+        bottomBar.setPreferredSize(new Dimension(windowWidth, bottomBarHeight));
+        bottomBar.setBackground(Color.yellow);
+        
+        add(leftPanel);
+        add(rightPanel);
+        add(bottomBar);
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    }
+
+    void showAndChangePackage() {
+        setVisible(true);
+
     }
 
 }

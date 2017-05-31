@@ -38,6 +38,7 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
     private JComboBox signaleringComboBox;
     private JTextField koerierIDField;
     private JComboBox bezorgdComboBox;
+    private PackageDetailScreen detailScreen = new PackageDetailScreen();
 
     private JButton filterButton;
 
@@ -117,7 +118,7 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
 //                    selectedPackage.setAmountOfDeliveredPackages(Integer.parseInt(table.getValueAt(row, 6).toString()));
 //                    selectedPackage.setStatus(table.getValueAt(row, 7).toString());
 ////                    koerierDetailsScreen.showAndChangeSelectedKoerier(selectedKoerier);
-                    System.out.println("test");
+                    detailScreen.showAndChangePackage();
                 }
             }
         });
