@@ -18,7 +18,7 @@ import javax.swing.JTextField;
  *
  * @author Andy
  */
-public class OverviewPackagesScreen extends JFrame implements ActionListener {
+public class OverviewPackagesPanel extends JFrame implements ActionListener {
 
     private JPanel topBar;
 
@@ -34,7 +34,7 @@ public class OverviewPackagesScreen extends JFrame implements ActionListener {
 
     private JButton filterButton;
 
-    public OverviewPackagesScreen() {
+    public OverviewPackagesPanel() {
 
     }
 
