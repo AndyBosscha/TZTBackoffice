@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import tztbackoffice.Models.KoerierModel;
@@ -23,7 +24,7 @@ import tztbackoffice.Models.KoerierModel;
  * @author Andy
  */
 public class OverviewKoerierPanel extends JPanel {
-    
+
     private JPanel topBar;
     private JLabel nameLabel;
     private JLabel medewerkerNrLabel;
@@ -36,14 +37,15 @@ public class OverviewKoerierPanel extends JPanel {
     private KoerierModel selectedKoerier;
     private KoerierDetailsScreen koerierDetailsScreen;
     private JButton filterButton = new JButton("Filter");
-    
-    public OverviewKoerierPanel(){
+
+    public OverviewKoerierPanel() {
+        setLayout(new FlowLayout());
         selectedKoerier = new KoerierModel();
         koerierDetailsScreen = new KoerierDetailsScreen();
         topBar = new JPanel();
-        topBar.setPreferredSize(new Dimension(this.getWidth(), 50));
+        topBar.setPreferredSize(new Dimension(1200, 50));
         topBar.setLayout(new FlowLayout());
-        setLayout(new FlowLayout());
+
         nameLabel = new JLabel("Naam");
         topBar.add(nameLabel);
         nameTextfield = new JTextField();
@@ -72,7 +74,7 @@ public class OverviewKoerierPanel extends JPanel {
         topBar.add(filterButton);
         add(topBar);
 
-        String[] columns = new String[]{
+        String[] columns = {
             "Naam", "Medewerkernr", "Woonplaats", "Geboortedatum", "Datum in dienst", "Aantal opdrachten aangenomen", "Aantal pakketten bezorgd", "Status"
         };
         Object[][] data = new Object[][]{
@@ -122,8 +124,9 @@ public class OverviewKoerierPanel extends JPanel {
                 }
             }
         });
-        table.setPreferredSize(new Dimension(1000,1000));
-        add(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(1000, 500));
+        add(scrollPane);
         setPreferredSize(new Dimension(1150, 875));
     }
 }

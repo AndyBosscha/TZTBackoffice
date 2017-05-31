@@ -32,8 +32,6 @@ import javax.swing.JTabbedPane;
  */
 public class MainScreenTZT extends JFrame implements ActionListener {
 
-    
-
     public MainScreenTZT() {
         setSize(1200, 700);
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -44,36 +42,36 @@ public class MainScreenTZT extends JFrame implements ActionListener {
         tabbedPane.addTab("Klanten", panel2);
 
         JComponent panel3 = new JPanel();
+        panel3.add(new OverviewPackagesPanel());
         tabbedPane.addTab("Pakketten", panel3);
 
         add(tabbedPane);
 
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-        
+
         setTitle("TZT Backoffice");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 //        
         setVisible(true);
     }
-    
+
 //    private JPanel createKoerierTab(){
 //        
 //
 //    }  
 //    
-    private JPanel createKlantTab(){
+    private JPanel createKlantTab() {
         JPanel klantPanel = new JPanel();
-        
+
         return klantPanel;
     }
-    
-    private JPanel createPakketTab(){
+
+    private JPanel createPakketTab() {
         JPanel pakketPanel = new JPanel();
-        
+
         return pakketPanel;
     }
-  
 
     @Override
     public void actionPerformed(ActionEvent e) {
