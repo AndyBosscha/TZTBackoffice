@@ -43,6 +43,7 @@ public class MainScreenTZT extends JFrame implements ActionListener {
     private JComboBox statusCombobox;
     private KoerierModel selectedKoerier;
     private KoerierDetailsScreen koerierDetailsScreen;
+    private JButton filterButton = new JButton("Filter");
 
     public MainScreenTZT() {
         selectedKoerier = new KoerierModel();
@@ -82,7 +83,7 @@ public class MainScreenTZT extends JFrame implements ActionListener {
         statusCombobox.setPreferredSize(new Dimension(100, 30));
         
         topBar.add(statusCombobox);
-        
+        topBar.add(filterButton);
         add(topBar);
         
         String[] columns = new String[]{
@@ -114,10 +115,9 @@ public class MainScreenTZT extends JFrame implements ActionListener {
                 return false;
             }
         };
+        
         table.setAutoCreateRowSorter(true);
-        {
-            
-        }
+        
         table.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
                 JTable table = (JTable) me.getSource();
