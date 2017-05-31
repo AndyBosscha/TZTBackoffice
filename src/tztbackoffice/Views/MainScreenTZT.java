@@ -5,7 +5,6 @@
  */
 package tztbackoffice.Views;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -16,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,7 +32,6 @@ import javax.swing.JTabbedPane;
  */
 public class MainScreenTZT extends JFrame implements ActionListener {
 
-    private JPanel mainScreen;
     private JPanel topBar;
     private JLabel nameLabel;
     private JLabel medewerkerNrLabel;
@@ -47,18 +46,37 @@ public class MainScreenTZT extends JFrame implements ActionListener {
     private JButton filterButton = new JButton("Filter");
 
     public MainScreenTZT() {
+        setSize(1200, 700);
+        JTabbedPane tabbedPane = new JTabbedPane();
+        JComponent panel1 = new JPanel();
+        panel1.add(createKoerierTab());
+        tabbedPane.addTab("Koeriers", panel1);
+        JComponent panel2 = new JPanel();
+        tabbedPane.addTab("Klanten", panel2);
+
+        JComponent panel3 = new JPanel();
+        tabbedPane.addTab("Pakketten", panel3);
+
+        add(tabbedPane);
+
+        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+                
         selectedKoerier = new KoerierModel();
         koerierDetailsScreen = new KoerierDetailsScreen();
-        setSize(1200, 700);
+        
         setTitle("TZT Backoffice");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
-        mainScreen = new JPanel();
+//        
+        setVisible(true);
+    }
+    
+    private JPanel createKoerierTab(){
+        JPanel mainScreen = new JPanel();
         topBar = new JPanel();
         topBar.setPreferredSize(new Dimension(this.getWidth(), 50));
         topBar.setLayout(new FlowLayout());
-        mainScreen.setLayout(new GridLayout(1, 1, 5, 5));
+        mainScreen.setLayout(new FlowLayout());
         nameLabel = new JLabel("Naam");
         topBar.add(nameLabel);
         nameTextfield = new JTextField();
@@ -85,7 +103,7 @@ public class MainScreenTZT extends JFrame implements ActionListener {
 
         topBar.add(statusCombobox);
         topBar.add(filterButton);
-        add(topBar);
+        mainScreen.add(topBar);
 
         String[] columns = new String[]{
             "Naam", "Medewerkernr", "Woonplaats", "Geboortedatum", "Datum in dienst", "Aantal opdrachten aangenomen", "Aantal pakketten bezorgd", "Status"
@@ -137,14 +155,25 @@ public class MainScreenTZT extends JFrame implements ActionListener {
                 }
             }
         });
-
+        table.setPreferredSize(new Dimension(1000,1000));
+        mainScreen.add(table);
         mainScreen.setPreferredSize(new Dimension(1150, 875));
-        mainScreen.setBackground(Color.red);
-        mainScreen.add(new JScrollPane(table));
-        add(mainScreen);
+        return mainScreen;
 
-        setVisible(true);
+    }  
+    
+    private JPanel createKlantTab(){
+        JPanel klantPanel = new JPanel();
+        
+        return klantPanel;
     }
+    
+    private JPanel createPakketTab(){
+        JPanel pakketPanel = new JPanel();
+        
+        return pakketPanel;
+    }
+  
 
     @Override
     public void actionPerformed(ActionEvent e) {
