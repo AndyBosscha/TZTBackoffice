@@ -24,7 +24,7 @@ import tztbackoffice.Models.KoerierModel;
  * @author Andy
  */
 public class KoerierDetailsScreen extends JDialog implements ActionListener {
-    
+
     private KoerierModel selectedKoerier;
     private JLabel nameLabel = new JLabel("Naam");
     private JLabel additionalNameLabel = new JLabel("Tussenvoegsel");
@@ -44,7 +44,7 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
     private JLabel statusLabel = new JLabel("Status");
     private JLabel koerierNrLabel = new JLabel("Koeriersnummer");
     private int windowHeight = 900, windowWidth = 900, bottomBarHeight = 80;
-    
+
     private JTextField nameField = new JTextField();
     private JTextField additionalNameField = new JTextField();
     private JTextField lastNameField = new JTextField();
@@ -63,25 +63,26 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
     private JPanel photoPanel = new JPanel();
     private JButton resumeButton = new JButton("Openen");
     private JButton idButton = new JButton("Openen");
-    
+
     private JButton acceptButton = new JButton("Goedkeuren");
     private JButton declineButton = new JButton("Afkeuren");
     private JButton editButton = new JButton("Wijzigen");
     private JButton historyButton = new JButton("Inzien opdrachthistorie");
     private JButton blockButton = new JButton("Blokkeren");
     private JButton cancelButton = new JButton("Annuleren");
-    
+    private JButton saveButton = new JButton("Opslaan");
+
     private JPanel leftPanel;
     private JPanel rightPanel;
     private JPanel bottomBar;
-    
+
     public KoerierDetailsScreen() {
         setLayout(new FlowLayout());
         setSize(windowWidth, windowHeight);
-        
+
         leftPanel = new JPanel();
         leftPanel.setLayout(new GridLayout(12, 2, 30, 30));
-        
+
         nameField.setEnabled(false);
         additionalNameField.setEnabled(false);
         lastNameField.setEnabled(false);
@@ -94,7 +95,7 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
         phoneNumberField.setEnabled(false);
         emailField.setEnabled(false);
         bankNumberField.setEnabled(false);
-        
+
         leftPanel.add(nameLabel);
         leftPanel.add(nameField);
         leftPanel.add(additionalNameLabel);
@@ -119,16 +120,16 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
         leftPanel.add(emailField);
         leftPanel.add(bankNumberLabel);
         leftPanel.add(bankNumberField);
-        
+
         leftPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
         add(leftPanel);
-        
+
         rightPanel = new JPanel();
         rightPanel.setLayout(new GridLayout(5, 2, 30, 30));
-        
+
         statusField.setEnabled(false);
         koerierNrField.setEnabled(false);
-        
+
         rightPanel.add(photoLabel);
         rightPanel.add(photoPanel);
         rightPanel.add(resumeLabel);
@@ -139,61 +140,79 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
         rightPanel.add(statusField);
         rightPanel.add(koerierNrLabel);
         rightPanel.add(koerierNrField);
-        
+
         rightPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
         add(rightPanel);
-        
+
         bottomBar = new JPanel();
         bottomBar.setLayout(new FlowLayout());
-        
+
         acceptButton.addActionListener(this);
         declineButton.addActionListener(this);
         editButton.addActionListener(this);
+        saveButton.addActionListener(this);
         historyButton.addActionListener(this);
         blockButton.addActionListener(this);
         cancelButton.addActionListener(this);
-        
+
         bottomBar.add(acceptButton);
         bottomBar.add(declineButton);
         bottomBar.add(editButton);
+        bottomBar.add(saveButton);
         bottomBar.add(historyButton);
         bottomBar.add(blockButton);
         bottomBar.add(cancelButton);
         bottomBar.setPreferredSize(new Dimension(windowWidth, bottomBarHeight));
         add(bottomBar);
-        
+
         setTitle("TZT Backoffice - Detailoverzicht koerier");
         setResizable(false);
         setLocationRelativeTo(null);
-        
+
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         if (e.getSource() == acceptButton) {
-            
+
         }
-        
+
         if (e.getSource() == declineButton) {
-            
+
         }
-        
+
         if (e.getSource() == editButton) {
-            
+            nameField.setEnabled(true);
+            additionalNameField.setEnabled(true);
+            lastNameField.setEnabled(true);
+            sexBox.setEnabled(true);
+            dateOfBirthField.setEnabled(true);
+            houseNumberField.setEnabled(true);
+            zipCodeFIeld.setEnabled(true);
+            addressField.setEnabled(true);
+            cityField.setEnabled(true);
+            phoneNumberField.setEnabled(true);
+            emailField.setEnabled(true);
+            bankNumberField.setEnabled(true);
+            repaint();
+        }
+
+        if (e.getSource() == saveButton) {
+
         }
         if (e.getSource() == historyButton) {
-            
+
         }
         if (e.getSource() == blockButton) {
-            
+
         }
         if (e.getSource() == cancelButton) {
             this.setVisible(false);
         }
-        
+
     }
-    
+
     public void showAndChangeSelectedKoerier(KoerierModel newSelectedKoerier) {
         selectedKoerier = newSelectedKoerier;
         nameField.setText(selectedKoerier.getFirstName());
@@ -210,7 +229,20 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
         bankNumberField.setText(selectedKoerier.getBankNumber());
         statusField.setText(selectedKoerier.getStatus());
         koerierNrField.setText(selectedKoerier.getIdUser() + "");
-        
+
+        nameField.setEnabled(false);
+        additionalNameField.setEnabled(false);
+        lastNameField.setEnabled(false);
+        sexBox.setEnabled(false);
+        dateOfBirthField.setEnabled(false);
+        houseNumberField.setEnabled(false);
+        zipCodeFIeld.setEnabled(false);
+        addressField.setEnabled(false);
+        cityField.setEnabled(false);
+        phoneNumberField.setEnabled(false);
+        emailField.setEnabled(false);
+        bankNumberField.setEnabled(false);
+
         setVisible(true);
     }
 }
