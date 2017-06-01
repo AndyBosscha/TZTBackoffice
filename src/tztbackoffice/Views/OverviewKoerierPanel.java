@@ -8,6 +8,8 @@ package tztbackoffice.Views;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
@@ -23,7 +25,7 @@ import tztbackoffice.Models.KoerierModel;
  *
  * @author Andy
  */
-public class OverviewKoerierPanel extends JPanel {
+public class OverviewKoerierPanel extends JPanel implements ActionListener {
 
     private JPanel topBar;
     private JLabel nameLabel;
@@ -128,5 +130,10 @@ public class OverviewKoerierPanel extends JPanel {
         scrollPane.setPreferredSize(new Dimension(1000, 500));
         add(scrollPane);
         setPreferredSize(new Dimension(1150, 875));
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

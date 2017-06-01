@@ -39,6 +39,7 @@ public class MainScreenTZT extends JFrame implements ActionListener {
         panel1.add(new OverviewKoerierPanel());
         tabbedPane.addTab("Koeriers", panel1);
         JComponent panel2 = new JPanel();
+        panel2.add(new OverviewKlantenPanel());
         tabbedPane.addTab("Klanten", panel2);
 
         JComponent panel3 = new JPanel();
