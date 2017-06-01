@@ -59,7 +59,7 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
 
         signaleringLabel = new JLabel("Signalering");
         topBar.add(signaleringLabel);
-        String[] comboBoxListSignalering = {"Ja", "Nee"};
+        String[] comboBoxListSignalering = {"", "Ja", "Nee"};
         signaleringComboBox = new JComboBox(comboBoxListSignalering);
         signaleringComboBox.setPreferredSize(new Dimension(100, 30));
         topBar.add(signaleringComboBox);
@@ -72,7 +72,7 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
 
         bezorgdLabel = new JLabel("Bezorgd");
         topBar.add(bezorgdLabel);
-        String[] comboBoxListBezorgd = {"Ja", "Nee"};
+        String[] comboBoxListBezorgd = {"", "Ja", "Nee"};
         bezorgdComboBox = new JComboBox(comboBoxListBezorgd);
         bezorgdComboBox.setPreferredSize(new Dimension(100, 30));
         topBar.add(bezorgdComboBox);

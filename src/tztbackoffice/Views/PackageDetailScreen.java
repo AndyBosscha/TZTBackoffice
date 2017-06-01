@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,20 +24,26 @@ import javax.swing.JTextField;
  */
 public class PackageDetailScreen extends JDialog implements ActionListener {
 
-    private int windowHeight = 900, windowWidth = 800, bottomBarHeight = 80;
+    private int windowHeight = 600, windowWidth = 1000, bottomBarHeight = 80;
     private JLabel tracenumberLabel = new JLabel("Tracenummer");
+    private JLabel emptyLabel1 = new JLabel("         ");
+    private JLabel emptyLabel2 = new JLabel("         ");
+    private JLabel emptyLabel3 = new JLabel("         ");
+    private JLabel emptyLabel4 = new JLabel("         ");
     private JLabel afzenderLabel = new JLabel("Afzender");
     private JLabel afzenderVoornaamLabel = new JLabel("Voornaam Afzender");
     private JLabel afzenderAchternaamLabel = new JLabel("Achternaam Afzender");
     private JLabel afkomstLabel = new JLabel("Afkomst");
-    private JLabel afkomstStraatnaamHuisnrLabel = new JLabel("Straatnaam + huisnr");
+    private JLabel afkomstStraatnaamLabel = new JLabel("Straatnaam");
+    private JLabel afkomstHuisnummerLabel = new JLabel("Huisnummer");
     private JLabel afkomstPostcodeLabel = new JLabel("Postcode");
     private JLabel afkomstWoonplaatsLabel = new JLabel("Woonplaats");
     private JLabel geaddresseerdeLabel = new JLabel("Geaddresseerde");
-    private JLabel geaddresseerdeVoornaamLabel = new JLabel("Voornaam");
-    private JLabel geaddresseerdeAchternaamLabel = new JLabel("Achternaam");
+    private JLabel geaddresseerdeVoornaamLabel = new JLabel("Voornaam Geaddresseerde");
+    private JLabel geaddresseerdeAchternaamLabel = new JLabel("Achternaam Geaddresseerde");
     private JLabel bestemmingLabel = new JLabel("Bestemming");
-    private JLabel bestemmingStraatnaamHuisnummerLabel = new JLabel("Straatnaam + huisnr");
+    private JLabel bestemmingStraatnaamLabel = new JLabel("Straatnaam");
+    private JLabel bestemmingHuisnummerLabel = new JLabel("Huisnummer");
     private JLabel bestemmingPostcodeLabel = new JLabel("Postcode");
     private JLabel bestemmingWoonplaatsLabel = new JLabel("Woonplaats");
     private JLabel aanmelddatumLabel = new JLabel("Aanmelddatum");
@@ -75,51 +82,117 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
     private JTextField signaleringTextfield = new JTextField();
     private JTextField verzendkostenTextfield = new JTextField();
 
+    private JButton annulerenButton = new JButton("Annuleren");
+    private JButton wijzigenButton = new JButton("Wijzigen");
+    private JButton opslaanButton = new JButton("Opslaan");
+
     public PackageDetailScreen() {
         setSize(windowWidth, windowHeight);
         setLayout(new FlowLayout());
         setResizable(false);
         setLocationRelativeTo(null);
         JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new GridLayout(13, 2, 30, 30));
-//        leftPanel.setLayout(new FlowLayout());
-        leftPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
-//        leftPanel.setBackground(Color.red);
+        leftPanel.setLayout(new GridLayout(8, 2, 30, 30));
+        leftPanel.setPreferredSize(new Dimension(windowWidth / 3 - 10, windowHeight - bottomBarHeight));
 
-        tracenummerTextfield.setPreferredSize(new Dimension(200, 30));
-        afzenderVoornaamTextfield.setPreferredSize(new Dimension(200, 30));
-        afzenderVoornaamTextfield.setPreferredSize(new Dimension(200, 30));
-        afzenderAchternaamTextfield.setPreferredSize(new Dimension(200, 30));
-        afkomstStraatnaamTextfield.setPreferredSize(new Dimension(200, 30));
-        afkomstStraatnaamTextfield.setPreferredSize(new Dimension(200, 30));
-        afkomstHuisnummerTextfield.setPreferredSize(new Dimension(200, 30));
-        afkomstPostcodeTextfield.setPreferredSize(new Dimension(200, 30));
+        tracenummerTextfield.setEnabled(false);
+        tracenummerTextfield.setEnabled(false);
+        afzenderVoornaamTextfield.setEnabled(false);
+        afzenderAchternaamTextfield.setEnabled(false);
+        afkomstStraatnaamTextfield.setEnabled(false);
+        afkomstHuisnummerTextfield.setEnabled(false);
+        afkomstPostcodeTextfield.setEnabled(false);
+        afkomstWoonplaatsTextfield.setEnabled(false);
+        geaddresseerdeVoornaamTextfield.setEnabled(false);
+        geaddresseerdeAchternaamTextfield.setEnabled(false);
+        bestemmingStraatnaamTextfield.setEnabled(false);
+        bestemmingHuisnummerTextfield.setEnabled(false);
+        bestemmingPostcodeTextfield.setEnabled(false);
+        bestemmingWoonplaatsTextfield.setEnabled(false);
+        aanmelddatumTextfield.setEnabled(false);
+        aanmeldtijdTextfield.setEnabled(false);
+        dimensiesGewichtTextfield.setEnabled(false);
+        dimensiesHoogteTextfield.setEnabled(false);
+        dimensiesLengteTextfield.setEnabled(false);
+        dimensiesBreedteTextfield.setEnabled(false);
+        bezorgdTextfield.setEnabled(false);
+        bezorgmomentTextfield.setEnabled(false);
+        signaleringTextfield.setEnabled(false);
+        verzendkostenTextfield.setEnabled(false);
 
         leftPanel.add(tracenumberLabel);
         leftPanel.add(tracenummerTextfield);
+        leftPanel.add(afzenderLabel);
+        leftPanel.add(emptyLabel1);
         leftPanel.add(afzenderVoornaamLabel);
         leftPanel.add(afzenderVoornaamTextfield);
         leftPanel.add(afzenderAchternaamLabel);
         leftPanel.add(afzenderAchternaamTextfield);
-        leftPanel.add(afkomstStraatnaamHuisnrLabel);
+        leftPanel.add(afkomstStraatnaamLabel);
         leftPanel.add(afkomstStraatnaamTextfield);
-        leftPanel.add(afkomstStraatnaamHuisnrLabel);
+        leftPanel.add(afkomstHuisnummerLabel);
         leftPanel.add(afkomstHuisnummerTextfield);
         leftPanel.add(afkomstPostcodeLabel);
         leftPanel.add(afkomstPostcodeTextfield);
         leftPanel.add(afkomstWoonplaatsLabel);
+        leftPanel.add(afkomstWoonplaatsTextfield);
+
+        JPanel midPanel = new JPanel();
+        midPanel.setLayout(new GridLayout(8, 2, 30, 30));
+        midPanel.setPreferredSize(new Dimension(windowWidth / 3 - 10, windowHeight - bottomBarHeight));
+
+        midPanel.add(emptyLabel3);
+        midPanel.add(emptyLabel4);
+        midPanel.add(geaddresseerdeLabel);
+        midPanel.add(emptyLabel2);
+        midPanel.add(geaddresseerdeVoornaamLabel);
+        midPanel.add(geaddresseerdeVoornaamTextfield);
+        midPanel.add(geaddresseerdeAchternaamLabel);
+        midPanel.add(geaddresseerdeAchternaamTextfield);
+        midPanel.add(bestemmingStraatnaamLabel);
+        midPanel.add(bestemmingStraatnaamTextfield);
+        midPanel.add(bestemmingHuisnummerLabel);
+        midPanel.add(bestemmingHuisnummerTextfield);
+        midPanel.add(bestemmingPostcodeLabel);
+        midPanel.add(bestemmingPostcodeTextfield);
+        midPanel.add(bestemmingWoonplaatsLabel);
+        midPanel.add(bestemmingWoonplaatsTextfield);
 
         JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new GridLayout(13, 2, 30, 30));
-        rightPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
-        rightPanel.setBackground(Color.blue);
+        rightPanel.setLayout(new GridLayout(10, 2, 30, 15));
+        rightPanel.setPreferredSize(new Dimension(windowWidth / 3 - 10, windowHeight - bottomBarHeight));
+
+        rightPanel.add(aanmelddatumLabel);
+        rightPanel.add(aanmelddatumTextfield);
+        rightPanel.add(aanmeldtijdLabel);
+        rightPanel.add(aanmeldtijdTextfield);
+        rightPanel.add(dimensiesGewichtLabel);
+        rightPanel.add(dimensiesGewichtTextfield);
+        rightPanel.add(dimensiesLengteLabel);
+        rightPanel.add(dimensiesLengteTextfield);
+        rightPanel.add(dimensiesBreedteLabel);
+        rightPanel.add(dimensiesBreedteTextfield);
+        rightPanel.add(dimensiesHoogteLabel);
+        rightPanel.add(dimensiesHoogteTextfield);
+        rightPanel.add(bezorgdLabel);
+        rightPanel.add(bezorgdTextfield);
+        rightPanel.add(bezorgmomentLabel);
+        rightPanel.add(bezorgmomentTextfield);
+        rightPanel.add(signaleringLabel);
+        rightPanel.add(signaleringTextfield);
+        rightPanel.add(verzendkostenLabel);
+        rightPanel.add(verzendkostenTextfield);
 
         JPanel bottomBar = new JPanel();
         bottomBar.setLayout(new FlowLayout());
         bottomBar.setPreferredSize(new Dimension(windowWidth, bottomBarHeight));
-        bottomBar.setBackground(Color.yellow);
+
+        bottomBar.add(annulerenButton);
+        bottomBar.add(wijzigenButton);
+        bottomBar.add(opslaanButton);
 
         add(leftPanel);
+        add(midPanel);
         add(rightPanel);
         add(bottomBar);
 

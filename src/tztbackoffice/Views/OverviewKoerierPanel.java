@@ -66,7 +66,7 @@ public class OverviewKoerierPanel extends JPanel {
 
         statusLabel = new JLabel("Status");
         topBar.add(statusLabel);
-        String[] comboBoxList = {"Nieuw", "Actief", "Inactief"};
+        String[] comboBoxList = {"", "Nieuw", "Actief", "Inactief"};
         statusCombobox = new JComboBox(comboBoxList);
         statusCombobox.setPreferredSize(new Dimension(100, 30));
 
