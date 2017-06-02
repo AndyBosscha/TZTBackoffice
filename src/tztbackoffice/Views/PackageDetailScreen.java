@@ -24,7 +24,7 @@ import javax.swing.JTextField;
  */
 public class PackageDetailScreen extends JDialog implements ActionListener {
 
-    private int windowHeight = 600, windowWidth = 1000, bottomBarHeight = 80;
+    private int windowHeight = 600, windowWidth = 1150, bottomBarHeight = 80;
     private JLabel tracenumberLabel = new JLabel("Tracenummer");
     private JLabel emptyLabel1 = new JLabel("         ");
     private JLabel emptyLabel2 = new JLabel("         ");

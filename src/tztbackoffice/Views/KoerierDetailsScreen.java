@@ -39,11 +39,11 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
     private JLabel emailLabel = new JLabel("E-mailadres");
     private JLabel bankNumberLabel = new JLabel("Bankrekeningnummer");
     private JLabel photoLabel = new JLabel("Foto");
-    private JLabel resumeLabel = new JLabel("Cirucculum Vitae");
+    private JLabel resumeLabel = new JLabel("Curriculum Vitae");
     private JLabel idLabel = new JLabel("Kopie identiteitsbewijs");
     private JLabel statusLabel = new JLabel("Status");
     private JLabel koerierNrLabel = new JLabel("Koeriersnummer");
-    private int windowHeight = 900, windowWidth = 900, bottomBarHeight = 80;
+    private int windowHeight = 800, windowWidth = 900, bottomBarHeight = 80;
 
     private JTextField nameField = new JTextField();
     private JTextField additionalNameField = new JTextField();
