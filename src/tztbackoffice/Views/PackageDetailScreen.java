@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers in Project Properties.     
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -187,8 +187,11 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
         bottomBar.setLayout(new FlowLayout());
         bottomBar.setPreferredSize(new Dimension(windowWidth, bottomBarHeight));
 
+        annulerenButton.addActionListener(this);
         bottomBar.add(annulerenButton);
+        wijzigenButton.addActionListener(this);
         bottomBar.add(wijzigenButton);
+        opslaanButton.addActionListener(this);
         bottomBar.add(opslaanButton);
 
         add(leftPanel);
@@ -200,6 +203,37 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == wijzigenButton) {
+            tracenummerTextfield.setEnabled(true);
+            tracenummerTextfield.setEnabled(true);
+            afzenderVoornaamTextfield.setEnabled(true);
+            afzenderAchternaamTextfield.setEnabled(true);
+            afkomstStraatnaamTextfield.setEnabled(true);
+            afkomstHuisnummerTextfield.setEnabled(true);
+            afkomstPostcodeTextfield.setEnabled(true);
+            afkomstWoonplaatsTextfield.setEnabled(true);
+            geaddresseerdeVoornaamTextfield.setEnabled(true);
+            geaddresseerdeAchternaamTextfield.setEnabled(true);
+            bestemmingStraatnaamTextfield.setEnabled(true);
+            bestemmingHuisnummerTextfield.setEnabled(true);
+            bestemmingPostcodeTextfield.setEnabled(true);
+            bestemmingWoonplaatsTextfield.setEnabled(true);
+            aanmelddatumTextfield.setEnabled(true);
+            aanmeldtijdTextfield.setEnabled(true);
+            dimensiesGewichtTextfield.setEnabled(true);
+            dimensiesHoogteTextfield.setEnabled(true);
+            dimensiesLengteTextfield.setEnabled(true);
+            dimensiesBreedteTextfield.setEnabled(true);
+            bezorgdTextfield.setEnabled(true);
+            bezorgmomentTextfield.setEnabled(true);
+            signaleringTextfield.setEnabled(true);
+            verzendkostenTextfield.setEnabled(true);
+            repaint();
+        }
+        if (e.getSource() == annulerenButton) {
+            this.setVisible(false);
+            repaint();
+        }
     }
 
     void showAndChangePackage() {
