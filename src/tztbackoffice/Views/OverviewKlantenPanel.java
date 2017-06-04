@@ -33,9 +33,8 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
     private KlantDetailsScreen detailScreen = new KlantDetailsScreen();
     private JTextField searchField;
     private JButton searchButton;
-    private JButton backButton;
-    private int panelWidth = 1100;
-    private APIConnector apiConnector = new APIConnector();
+    private int panelWidth = 1200;
+//    private APIConnector apiConnector = new APIConnector();
     public OverviewKlantenPanel() {
         
         selectedKlant = new KlantModel();
@@ -86,15 +85,8 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
             }
         });
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(panelWidth - 20, 500));
+        scrollPane.setPreferredSize(new Dimension(panelWidth - 200, 500));
         add(scrollPane);
-        
-        backButton = new JButton("Terug");
-        JPanel bottomBar = new JPanel();
-        bottomBar.setPreferredSize(new Dimension(panelWidth, 80));
-        bottomBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        bottomBar.add(backButton);
-        add(bottomBar);
         setPreferredSize(new Dimension(panelWidth, 1200));
     }
 
@@ -102,5 +94,4 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
     }
-
 }
