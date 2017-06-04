@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import com.google.gson.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +23,7 @@ import com.google.gson.*;
  */
 public class APIConnector {
 
-    private String sendRequest(String requestURL) throws IOException {
+    private String sendGetRequest(String requestURL) throws IOException {
         String returnValue = "";
         try {
             URL url = new URL(requestURL);
@@ -41,7 +42,7 @@ public class APIConnector {
             String output;
 
             while ((output = br.readLine()) != null) {
-                returnValue = output;
+                returnValue += output;
             }
 
             conn.disconnect();
@@ -60,18 +61,37 @@ public class APIConnector {
     }
 
     public String validateAddress(String zipCode) throws IOException {
-        if(zipCode.length() == 6){
-            JsonObject location = toJSON(sendRequest("http://nominatim.openstreetmap.org/search?postalcode="+zipCode+"&format=json"));
-            if(location.get("lat") == null){
+        
+        if (zipCode.length() == 6) {
+            JsonObject location = toJSON(sendGetRequest("http://maps.googleapis.com/maps/api/geocode/json?address=" + zipCode));
+            JsonObject results = toJSON(location.get("results").toString());
+            if (results == null || results.get("geometry") == null) {
                 return "";
             }
-            JsonObject address = toJSON(sendRequest("http://nominatim.openstreetmap.org/reverse?format=json&lat=" + stripQuotes(location.get("lat").toString()) + "&lon=" + stripQuotes(location.get("lon").toString()) + "7&zoom=18&addressdetails=1"));
-            JsonElement ad = address.get("address");
-            return stripQuotes(toJSON(ad.toString()).get("road").toString());
-        } else {
-            return "";
+            JsonElement geometry = results.get("geometry");
+            JsonElement geoLocation = geometry.getAsJsonObject().get("location");
+            String[] latLong = new String[]{
+                geoLocation.getAsJsonObject().get("lat").toString(),
+                geoLocation.getAsJsonObject().get("lng").toString()
+            };
+            JsonObject address = toJSON(sendGetRequest("http://maps.googleapis.com/maps/api/geocode/json?latlng=" + stripQuotes(latLong[0]) + "," + stripQuotes(latLong[1])));
+            JsonArray result = address.get("results").getAsJsonArray();
+            JsonArray ad = result.get(0).getAsJsonObject().get("address_components").getAsJsonArray();
+            String concatResult = "";
+            
+            for (int i = 0; i < ad.size(); i++) {
+                if (stripQuotes(ad.get(i).getAsJsonObject().get("types").getAsJsonArray().get(0).toString()).equals("route")) {
+                    concatResult = stripQuotes(ad.get(i).getAsJsonObject().get("long_name").toString().trim());
+                }
+                
+                if (stripQuotes(ad.get(i).getAsJsonObject().get("types").getAsJsonArray().get(0).toString()).equals("locality")) {
+                    concatResult += "STRINGDIVIDER"+stripQuotes(ad.get(i).getAsJsonObject().get("short_name").toString().trim());
+                }
+            }
+            
+            return concatResult;
         }
-        
+        return "";
     }
 
     private String stripQuotes(String value) {
@@ -85,7 +105,8 @@ public class APIConnector {
     }
 
     public JsonObject toJSON(String value) {
-        if("[]".equals(value)){
+
+        if ("[]".equals(value)) {
             return new JsonObject();
         }
         JsonObject o;
@@ -97,12 +118,11 @@ public class APIConnector {
         }
 
         JsonParser parser = new JsonParser();
-        if(value == null){
+        if (value == null) {
             o = new JsonObject();
         } else {
             o = parser.parse(value).getAsJsonObject();
         }
-        
         return o;
     }
 

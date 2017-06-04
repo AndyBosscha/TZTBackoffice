@@ -140,7 +140,19 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     
     private void validateAddress(){
             try {
-                addressField.setText(apiConnector.validateAddress(zipCodeField1.getText() + "" + zipCodeField2.getText()));
+                String simpleStreetAndCity = apiConnector.validateAddress(zipCodeField1.getText() + "" + zipCodeField2.getText());
+                if(!simpleStreetAndCity.equals("")){
+                    String[] streetAndCity = simpleStreetAndCity.split("STRINGDIVIDER");
+                    System.out.println(streetAndCity.length);
+                    if(streetAndCity.length == 2){
+                        addressField.setText(streetAndCity[0]);
+                        cityField.setText(streetAndCity[1]);
+                    }
+                } else{
+                        addressField.setText("");
+                        cityField.setText("");
+                }
+                
             } catch (IOException ex) {
                 Logger.getLogger(KlantDetailsScreen.class.getName()).log(Level.SEVERE, null, ex);
             }
