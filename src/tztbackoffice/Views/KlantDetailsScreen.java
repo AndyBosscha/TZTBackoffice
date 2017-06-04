@@ -48,7 +48,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     private JTextField countryField = new JTextField();
 
     private int screenWidth = 600;
-    private int screenHeight = 300;
+    private int screenHeight = 400;
 
     private KlantModel selectedKlant;
     private APIConnector apiConnector = new APIConnector();
@@ -56,6 +56,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     public KlantDetailsScreen() {
         setLayout(new FlowLayout(FlowLayout.LEFT));
         JPanel topContainerPanel = new JPanel();
+        setResizable(false);
 
         topContainerPanel.setLayout(new GridLayout(4, 2, 20, 20));
         topContainerPanel.add(firstNameLabel);
@@ -115,12 +116,10 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         zipCodeField1.getDocument().addDocumentListener(zipListener);
         zipCodeField2.getDocument().addDocumentListener(zipListener);
         houseNumberField.setText(selectedKlant.getHouseNumber());
-        
-        
-        
+
         setVisible(true);
     }
-    
+
     DocumentListener zipListener = new DocumentListener() {
         @Override
         public void insertUpdate(DocumentEvent e) {
@@ -137,25 +136,25 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
             validateAddress();
         }
     };
-    
-    private void validateAddress(){
-            try {
-                String simpleStreetAndCity = apiConnector.validateAddress(zipCodeField1.getText() + "" + zipCodeField2.getText());
-                if(!simpleStreetAndCity.equals("")){
-                    String[] streetAndCity = simpleStreetAndCity.split("STRINGDIVIDER");
-                    System.out.println(streetAndCity.length);
-                    if(streetAndCity.length == 2){
-                        addressField.setText(streetAndCity[0]);
-                        cityField.setText(streetAndCity[1]);
-                    }
-                } else{
-                        addressField.setText("");
-                        cityField.setText("");
+
+    private void validateAddress() {
+        try {
+            String simpleStreetAndCity = apiConnector.validateAddress(zipCodeField1.getText() + "" + zipCodeField2.getText());
+            if (!simpleStreetAndCity.equals("")) {
+                String[] streetAndCity = simpleStreetAndCity.split("STRINGDIVIDER");
+                System.out.println(streetAndCity.length);
+                if (streetAndCity.length == 2) {
+                    addressField.setText(streetAndCity[0]);
+                    cityField.setText(streetAndCity[1]);
                 }
-                
-            } catch (IOException ex) {
-                Logger.getLogger(KlantDetailsScreen.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                addressField.setText("");
+                cityField.setText("");
             }
+
+        } catch (IOException ex) {
+            Logger.getLogger(KlantDetailsScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

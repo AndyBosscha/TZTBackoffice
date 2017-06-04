@@ -231,6 +231,30 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
             repaint();
         }
         if (e.getSource() == annulerenButton) {
+            tracenummerTextfield.setEnabled(false);
+            tracenummerTextfield.setEnabled(false);
+            afzenderVoornaamTextfield.setEnabled(false);
+            afzenderAchternaamTextfield.setEnabled(false);
+            afkomstStraatnaamTextfield.setEnabled(false);
+            afkomstHuisnummerTextfield.setEnabled(false);
+            afkomstPostcodeTextfield.setEnabled(false);
+            afkomstWoonplaatsTextfield.setEnabled(false);
+            geaddresseerdeVoornaamTextfield.setEnabled(false);
+            geaddresseerdeAchternaamTextfield.setEnabled(false);
+            bestemmingStraatnaamTextfield.setEnabled(false);
+            bestemmingHuisnummerTextfield.setEnabled(false);
+            bestemmingPostcodeTextfield.setEnabled(false);
+            bestemmingWoonplaatsTextfield.setEnabled(false);
+            aanmelddatumTextfield.setEnabled(false);
+            aanmeldtijdTextfield.setEnabled(false);
+            dimensiesGewichtTextfield.setEnabled(false);
+            dimensiesHoogteTextfield.setEnabled(false);
+            dimensiesLengteTextfield.setEnabled(false);
+            dimensiesBreedteTextfield.setEnabled(false);
+            bezorgdTextfield.setEnabled(false);
+            bezorgmomentTextfield.setEnabled(false);
+            signaleringTextfield.setEnabled(false);
+            verzendkostenTextfield.setEnabled(false);
             this.setVisible(false);
             repaint();
         }
