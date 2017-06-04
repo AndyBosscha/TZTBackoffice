@@ -90,8 +90,15 @@ public class LoginScreen extends JFrame implements ActionListener {
     }
 
     private void login() {
-        MainScreenTZT mst = new MainScreenTZT();
-        this.setVisible(false);
+        System.out.println(String.valueOf(passwordTextField.getPassword()));
+        if(LoginController.checkLoginCredentials(usernameTextField.getText(), String.valueOf(passwordTextField.getPassword()))){
+            MainScreenTZT mst = new MainScreenTZT();
+            this.setVisible(false);
+        } else {
+            notificationLabel.setText("Logingegevens incorrect. Probeer het nogmaals.");
+            repaint();
+        }
+        
     }
 
     private void openForgotUsernameScreen() {
