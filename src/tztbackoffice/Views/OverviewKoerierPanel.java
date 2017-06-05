@@ -12,13 +12,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.*;
 import javax.swing.JTextField;
+import tztbackoffice.DBConnector;
 import tztbackoffice.Models.KoerierModel;
 
 /**
@@ -79,33 +82,35 @@ public class OverviewKoerierPanel extends JPanel implements ActionListener {
         String[] columns = {
             "Naam", "Medewerkernr", "Woonplaats", "Geboortedatum", "Datum in dienst", "Aantal opdrachten aangenomen", "Aantal pakketten bezorgd", "Status"
         };
-        Object[][] data = new Object[][]{
-            {"John", 4230, "Sexbierum", "12/11/1977", "12/03/2015", 532, 54, "Actief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 33, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 533, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 43, 444, "Nieuw"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Actief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 66664, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Nieuw"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Actief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Nieuw"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Actief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 4342, 444, "Inactief"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Nieuw"},
-            {"Rambo", 7220, "Rochel", "02/03/1953", "01/08/2011", 782, 444, "Inactief"}
-        };
-        JTable table = new JTable(data, columns) {
+
+        ArrayList<KoerierModel> allCouriers = DBConnector.getAllCouriers();
+        
+        DefaultTableModel model = new DefaultTableModel(); 
+        JTable table = new JTable(model) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-
+        
+        for(int i = 0; i < columns.length; i++){
+            model.addColumn(columns[i]);
+        }
+        
+                for (KoerierModel koerier : allCouriers) {
+            model.addRow(                
+                    new Object[]{
+                        koerier.getFirstName(),
+                        koerier.getIdUser(), 
+                        koerier.getCity(), 
+                        koerier.getDateOfBirth(), 
+                        "NIET_IN_DB",
+                        koerier.getAmountOfAcceptedPackages(), 
+                        koerier.getAmountOfDeliveredPackages(),
+                        koerier.getStatus()
+                    }
+            );
+        }
+        
         table.setAutoCreateRowSorter(true);
 
         table.addMouseListener(new MouseAdapter() {
@@ -114,15 +119,7 @@ public class OverviewKoerierPanel extends JPanel implements ActionListener {
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-                    selectedKoerier.setFirstName(table.getValueAt(row, 0).toString());
-                    selectedKoerier.setIdUser(Integer.parseInt(table.getValueAt(row, 1).toString()));
-                    selectedKoerier.setCity(table.getValueAt(row, 2).toString());
-                    selectedKoerier.setDateOfBirth(table.getValueAt(row, 3).toString());
-                    selectedKoerier.setStartDate(table.getValueAt(row, 4).toString());
-                    selectedKoerier.setAmountOfAcceptedPackages(Integer.parseInt(table.getValueAt(row, 5).toString()));
-                    selectedKoerier.setAmountOfDeliveredPackages(Integer.parseInt(table.getValueAt(row, 6).toString()));
-                    selectedKoerier.setStatus(table.getValueAt(row, 7).toString());
-                    koerierDetailsScreen.showAndChangeSelectedKoerier(selectedKoerier);
+                    koerierDetailsScreen.showAndChangeSelectedKoerier(DBConnector.getCourierDetails(Integer.parseInt(table.getValueAt(row, 1).toString())));
                 }
             }
         });

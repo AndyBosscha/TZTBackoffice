@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 import tztbackoffice.Controllers.LoginController;
+import tztbackoffice.DBConnector;
 
 /**
  *
@@ -85,7 +86,6 @@ public class LoginScreen extends JFrame implements ActionListener {
         buttonPanel.add(forgotPasswordButton);
         buttonPanel.add(forgotUsernameButton);
         loginFormContainer.add(buttonPanel);
-
         setVisible(true);
     }
 
