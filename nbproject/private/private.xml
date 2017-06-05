@@ -3,21 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Models/KlantModel.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/OverviewKoerierPanel.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/KoerierDetailsScreen.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/APIConnector.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Models/KoerierModel.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/OverviewPackagesPanel.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Models/PackageModel.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/PackageDetailScreen.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/MainScreenTZT.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Controllers/LoginController.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Models/UserModel.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/OverviewKlantenPanel.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/ForgotUsernameScreen.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/KlantDetailsScreen.java</file>
-            <file>file:/Users/imac/TZTBackoffice/src/tztbackoffice/Views/LoginScreen.java</file>
+            <file>file:/C:/NetBeansProjects/TZTBackoffice/src/tztbackoffice/Constants.java</file>
+            <file>file:/C:/NetBeansProjects/TZTBackoffice/src/tztbackoffice/DBConnector.java</file>
         </group>
     </open-files>
 </project-private>
