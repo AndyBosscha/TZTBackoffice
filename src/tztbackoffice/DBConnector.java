@@ -29,7 +29,6 @@ public class DBConnector {
     private static Connection connect(){
         try {
             String connectionString = Constants.DB_DRIVER + Constants.DB_ADDRESS + ":" + Constants.DB_PORT + "/" + Constants.DB_NAME + "?zeroDateTimeBehavior=convertToNull";
-            System.out.println(connectionString);
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(connectionString, Constants.DB_USN, Constants.DB_PW);  
             return con;
@@ -69,8 +68,6 @@ public class DBConnector {
                     allCouriers.add(newCourier);
                     
                 }
-                
-                System.out.println(allCouriers.size());
                 
             } catch (SQLException ex) {
                 Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
