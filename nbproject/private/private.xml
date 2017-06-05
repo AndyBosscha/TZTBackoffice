@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/NetBeansProjects/TZTBackoffice/src/tztbackoffice/Constants.java</file>
             <file>file:/C:/NetBeansProjects/TZTBackoffice/src/tztbackoffice/DBConnector.java</file>
+            <file>file:/C:/NetBeansProjects/TZTBackoffice/src/tztbackoffice/Controllers/LoginController.java</file>
+            <file>file:/C:/NetBeansProjects/TZTBackoffice/src/tztbackoffice/APIConnector.java</file>
         </group>
     </open-files>
 </project-private>

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -47,8 +48,12 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     private JTextField cityField = new JTextField();
     private JTextField countryField = new JTextField();
 
+    private JButton editButton = new JButton();
+    private JButton savebutton = new JButton();
+    private JButton cancelbutton = new JButton();
+
     private int screenWidth = 600;
-    private int screenHeight = 400;
+    private int screenHeight = 500;
 
     private KlantModel selectedKlant;
     private APIConnector apiConnector = new APIConnector();
@@ -58,7 +63,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         JPanel topContainerPanel = new JPanel();
         setResizable(false);
 
-        topContainerPanel.setLayout(new GridLayout(4, 2, 20, 20));
+        topContainerPanel.setLayout(new GridLayout(5, 2, 20, 20));
         topContainerPanel.add(firstNameLabel);
         topContainerPanel.add(firstNameField);
         topContainerPanel.add(lastNameLabel);
@@ -76,6 +81,12 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         zipCodeContainerPanel.add(zipCodeField1);
         zipCodeContainerPanel.add(zipCodeField2);
 
+        JPanel buttonBarContainer = new JPanel();
+        buttonBarContainer.setLayout(new FlowLayout());
+        buttonBarContainer.add(cancelbutton);
+        buttonBarContainer.add(editButton);
+        buttonBarContainer.add(savebutton);
+
         multipleFieldContainer.add(zipCodeLabel);
         multipleFieldContainer.add(zipCodeContainerPanel);
         multipleFieldContainer.add(houseNumberLabel);
@@ -87,9 +98,11 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         multipleFieldContainer.setPreferredSize(new Dimension(screenWidth - 10, screenHeight / 3 - 20));
         add(topContainerPanel);
         add(multipleFieldContainer);
+        add(buttonBarContainer);
 
         setSize(new Dimension(screenWidth, screenHeight));
         setLocationRelativeTo(null);
+
     }
 
     private String getFirstZipcodePart(String zipCode) {
