@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import tztbackoffice.Models.PackageModel;
 
 /**
  *
@@ -232,7 +233,6 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
         }
         if (e.getSource() == annulerenButton) {
             tracenummerTextfield.setEnabled(false);
-            tracenummerTextfield.setEnabled(false);
             afzenderVoornaamTextfield.setEnabled(false);
             afzenderAchternaamTextfield.setEnabled(false);
             afkomstStraatnaamTextfield.setEnabled(false);
@@ -260,7 +260,13 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
         }
     }
 
-    void showAndChangePackage() {
+    void showAndChangePackage(PackageModel selectedPackage) {
+        tracenummerTextfield.setText(selectedPackage.getIdPackage() + "");
+        dimensiesGewichtTextfield.setText(selectedPackage.getWeight() + "");
+        dimensiesBreedteTextfield.setText(selectedPackage.getWidth() + "");
+        dimensiesHoogteTextfield.setText(selectedPackage.getHeight() + "");
+        dimensiesLengteTextfield.setText(selectedPackage.getLength() + "");
+        bezorgdTextfield.setText(selectedPackage.getIsDelivered());
         setVisible(true);
 
     }

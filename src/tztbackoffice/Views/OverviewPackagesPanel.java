@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,7 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import tztbackoffice.Models.PackageModel;
+import tztbackoffice.APIConnector;
 
 /**
  *
@@ -28,6 +32,7 @@ import tztbackoffice.Models.PackageModel;
 public class OverviewPackagesPanel extends JPanel implements ActionListener {
 
     private JPanel topBar;
+    private APIConnector con = new APIConnector();
 
     private JLabel traceNumberLabel;
     private JLabel signaleringLabel;
@@ -45,6 +50,7 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
     private PackageModel selectedPackage;
 
     public OverviewPackagesPanel() {
+        con.getAllPackages();
         setSize(1200, 700);
         topBar = new JPanel();
         topBar.setPreferredSize(new Dimension(1200, 50));
@@ -81,30 +87,33 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
         topBar.add(filterButton);
 
         add(topBar);
-        setVisible(true);
 
-        String[] columns = new String[]{
-            "Tracenummer", "Koerier ID", "Locatie", "Route", "Signalering", "Bezorgd"};
-        Object[][] data = new Object[][]{
-            {"1234567890", 4234, "Sexbierum", "Amsterdam - Zwolle", "Nee", "Ja"},
-            {"34543535435", 4230, "Sexbierum", "Amsterdam - Zwolle", "Nee", "Ja"},
-            {"1234567890", 4230, "Sexbierum", "Amsterdam - Sexbierum", "Nee", "Ja"},
-            {"25524234", 4230, "Sexbierum", "Amsterdam - Zwolle", "Ja", "Ja"},
-            {"3452524536", 4230, "Sexbierum", "Zwolle - Sexbierum", "Nee", "Ja"},
-            {"1234567890", 234213, "Sexbierum", "Zwolle - Amsterdam", "Nee", "Nee"},
-            {"1234567890", 4230, "Sexbierum", "Amsterdam - Zwolle", "Nee", "Ja"},
-            {"1234567890", 4230, "Sexbierum", "Amsterdam - Zwolle", "Ja", "Nee"},
-            {"23652345235", 4230, "Sexbierum", "Sexbierum - Zwolle", "Ja", "Nee"},
-            {"1234567890", 543536, "Sexbierum", "Zwolle - Zwolle", "Nee", "Nee"},
-            {"6356235235", 4230, "Sexbierum", "Amsterdam - Zwolle", "Nee", "Ja"},
-            {"1234567890", 4230, "Sexbierum", "Amsterdam - Sexbierum", "Nee", "Ja"},};
-        JTable table = new JTable(data, columns) {
+        DefaultTableModel model = new DefaultTableModel();
+        String[] columns = new String[]{"Tracenummer", "Koerier ID", "Locatie", "Route", "Signalering", "Bezorgd"};
+        JTable table = new JTable(model) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-
+        ArrayList<PackageModel> allPackages = con.getAllPackages();
         table.setAutoCreateRowSorter(true);
+        
+        for (int i = 0; i < columns.length; i++) {
+            model.addColumn(columns[i]);
+        }
+        
+        for (PackageModel pckg : allPackages) {
+            model.addRow(                
+                    new Object[]{
+                        pckg.getIdPackage(),
+                        pckg.getIdCustomer(),
+                        "N/A",
+                        "N/A",
+                        "N/A",
+                        pckg.getIsDelivered()
+                    }
+            );
+        }
 
         table.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
@@ -112,16 +121,7 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-//                    selectedPackage.setFirstName(table.getValueAt(row, 0).toString());
-//                    selectedPackage.setIdUser(Integer.parseInt(table.getValueAt(row, 1).toString()));
-//                    selectedPackage.setCity(table.getValueAt(row, 2).toString());
-//                    selectedPackage.setDateOfBirth(table.getValueAt(row, 3).toString());
-//                    selectedPackage.setStartDate(table.getValueAt(row, 4).toString());
-//                    selectedPackage.setAmountOfAcceptedPackages(Integer.parseInt(table.getValueAt(row, 5).toString()));
-//                    selectedPackage.setAmountOfDeliveredPackages(Integer.parseInt(table.getValueAt(row, 6).toString()));
-//                    selectedPackage.setStatus(table.getValueAt(row, 7).toString());
-////                    koerierDetailsScreen.showAndChangeSelectedKoerier(selectedKoerier);
-                    detailScreen.showAndChangePackage();
+                    detailScreen.showAndChangePackage(con.getPackageDetails(table.getValueAt(row, 0).toString()));
                 }
             }
         });
@@ -129,11 +129,21 @@ public class OverviewPackagesPanel extends JPanel implements ActionListener {
         scrollPane.setPreferredSize(new Dimension(1000, 500));
         add(scrollPane);
         setPreferredSize(new Dimension(1150, 875));
+        setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private String isDelivered(Date deliveryDate) {
+        System.out.println(deliveryDate);
+        if(deliveryDate.toString().equals("0000-00-00")){
+            return "Nee";
+        } else {
+            return "Ja";
+        }
     }
 
 }

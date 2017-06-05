@@ -21,6 +21,15 @@ public class PackageModel {
     private double width;
     private Date pickUpDate;
     private Date deliveryDate;
+    private String isDelivered;
+
+    public String getIsDelivered() {
+        return isDelivered;
+    }
+
+    public void setIsDelivered(String isDelivered) {
+        this.isDelivered = isDelivered;
+    }
 
     public int getIdPackage() {
         return idPackage;

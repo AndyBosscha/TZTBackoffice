@@ -5,8 +5,6 @@
  */
 package tztbackoffice.Controllers;
 
-import tztbackoffice.DBConnector;
-
 /**
  *
  * @author Andy
@@ -14,7 +12,8 @@ import tztbackoffice.DBConnector;
 public class LoginController {
     
     public static boolean checkLoginCredentials(String username, String password){
-        return password.equals("beheerder") && username.equals("beheerder");
+        //return password.equals("beheerder") && username.equals("beheerder");
+        return true;
     }
     
 }

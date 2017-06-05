@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.*;
 import javax.swing.JTextField;
-import tztbackoffice.DBConnector;
+import tztbackoffice.APIConnector;
 import tztbackoffice.Models.KoerierModel;
 
 /**
@@ -29,7 +29,7 @@ import tztbackoffice.Models.KoerierModel;
  * @author Andy
  */
 public class OverviewKoerierPanel extends JPanel implements ActionListener {
-
+    private APIConnector con = new APIConnector();
     private JPanel topBar;
     private JLabel nameLabel;
     private JLabel medewerkerNrLabel;
@@ -83,7 +83,9 @@ public class OverviewKoerierPanel extends JPanel implements ActionListener {
             "Naam", "Medewerkernr", "Woonplaats", "Geboortedatum", "Datum in dienst", "Aantal opdrachten aangenomen", "Aantal pakketten bezorgd", "Status"
         };
 
-        ArrayList<KoerierModel> allCouriers = DBConnector.getAllCouriers();
+
+        
+        ArrayList<KoerierModel> allCouriers = con.getAllCouriers();
         
         DefaultTableModel model = new DefaultTableModel(); 
         JTable table = new JTable(model) {
@@ -96,14 +98,14 @@ public class OverviewKoerierPanel extends JPanel implements ActionListener {
             model.addColumn(columns[i]);
         }
         
-                for (KoerierModel koerier : allCouriers) {
+        for (KoerierModel koerier : allCouriers) {
             model.addRow(                
                     new Object[]{
                         koerier.getFirstName(),
                         koerier.getIdUser(), 
                         koerier.getCity(), 
                         koerier.getDateOfBirth(), 
-                        "NIET_IN_DB",
+                        koerier.getStartDate(),
                         koerier.getAmountOfAcceptedPackages(), 
                         koerier.getAmountOfDeliveredPackages(),
                         koerier.getStatus()
@@ -119,7 +121,7 @@ public class OverviewKoerierPanel extends JPanel implements ActionListener {
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-                    koerierDetailsScreen.showAndChangeSelectedKoerier(DBConnector.getCourierDetails(Integer.parseInt(table.getValueAt(row, 1).toString())));
+                    koerierDetailsScreen.showAndChangeSelectedKoerier(con.getCourierDetails(table.getValueAt(row, 1).toString()));
                 }
             }
         });
