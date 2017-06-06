@@ -141,7 +141,7 @@ public class KoerierDetailsScreen extends JDialog implements ActionListener {
         rightPanel.add(koerierNrLabel);
         rightPanel.add(koerierNrField);
 
-        rightPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight - bottomBarHeight));
+        rightPanel.setPreferredSize(new Dimension(windowWidth / 2 - 10, windowHeight/2 - bottomBarHeight));
         add(rightPanel);
 
         bottomBar = new JPanel();

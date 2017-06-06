@@ -28,6 +28,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.omg.CORBA.NameValuePair;
+import tztbackoffice.Models.KlantModel;
 import tztbackoffice.Models.KoerierModel;
 import tztbackoffice.Models.PackageModel;
 
@@ -213,7 +214,6 @@ public class APIConnector {
         try {
             JsonObject allCouriers = toJSON(makeValidJsonString(sendPostRequest(Constants.GET_ALL_COURIERS_FUNCTION_NAME, "")));
             JsonArray allCouriersArray = allCouriers.get("results").getAsJsonArray();
-            
             for(int i = 0; i < allCouriersArray.size(); i++){
                 KoerierModel addableModel = new KoerierModel();
                 JsonObject addableObject = allCouriersArray.get(i).getAsJsonObject();
@@ -230,7 +230,7 @@ public class APIConnector {
                 addableModel.setSex(addableObject.get("Gender").getAsString());
                 addableModel.setStatus(addableObject.get("Status").getAsString());
                 addableModel.setStartDate(addableObject.get("StartDate").getAsString());
-
+                addableModel.setDateOfBirth("N/A");
                 returnList.add(addableModel);
             }
             
@@ -270,8 +270,36 @@ public class APIConnector {
         return returnList;
     }
     
+    public ArrayList<KlantModel> getAllCustomers() {
+        ArrayList<KlantModel> returnList = new ArrayList<>();
+        
+        JsonObject customerJson;
+        try {
+            customerJson = toJSON(makeValidJsonString(sendPostRequest(Constants.GET_ALL_CUSTOMERS_FUNCTION_NAME, "")));
+            JsonArray customerArray = customerJson.get("results").getAsJsonArray();
+
+            for(int i = 0; i < customerArray.size(); i++){
+                KlantModel addableModel = new KlantModel();
+                JsonObject addableObject = customerArray.get(i).getAsJsonObject();
+                
+                addableModel.setActive("N/A");
+                addableModel.setCity(addableObject.get("City").getAsString());
+                addableModel.setHouseNumber(addableObject.get("Housenumber").getAsString());
+                addableModel.setStreet(addableObject.get("Street").getAsString());
+                addableModel.setZipCode(addableObject.get("Zipcode").getAsString());
+                addableModel.setName(addableObject.get("Firstname").getAsString() + " " + addableObject.get("Middlename").getAsString() + " " + addableObject.get("Lastname").getAsString());
+                returnList.add(addableModel);
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(APIConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+        return returnList;
+    }
+    
     public PackageModel getPackageDetails(String packageId){
-        System.out.println(packageId);
         PackageModel detailedPackage = new PackageModel();
         
         try {
@@ -302,7 +330,7 @@ public class APIConnector {
     public KoerierModel getCourierDetails(String courierId){
         KoerierModel detailedCourier = new KoerierModel();
         try {
-            JsonObject courierJson = toJSON(makeValidJsonString(sendPostRequest(Constants.GET_PACKAGE_DETAILS_FUNCTION_NAME, "&idUser=" + courierId)));
+            JsonObject courierJson = toJSON(makeValidJsonString(sendPostRequest(Constants.GET_PACKAGE_DETAILS_FUNCTION_NAME, "&iduser=1")));
             JsonArray courierArray = courierJson.get("results").getAsJsonArray();
             JsonObject addableObject = courierArray.get(0).getAsJsonObject();
             
@@ -346,6 +374,5 @@ public class APIConnector {
     private String makeValidJsonString(String value){
         return "{\"results\":"+value+"}";
     }
-    
 
 }

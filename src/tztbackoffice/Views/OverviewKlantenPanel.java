@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import tztbackoffice.APIConnector;
 import tztbackoffice.Models.KlantModel;
 
@@ -34,7 +36,8 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
     private JTextField searchField;
     private JButton searchButton;
     private int panelWidth = 1200;
-//    private APIConnector apiConnector = new APIConnector();
+    APIConnector con = new APIConnector();
+    
     public OverviewKlantenPanel() {
         
         selectedKlant = new KlantModel();
@@ -49,23 +52,36 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
         topBar.add(searchField);
         topBar.add(searchButton);
         add(topBar);
+        
+        ArrayList<KlantModel> allCustomers = con.getAllCustomers();
 
         String[] columns = {
             "Naam", "Adres", "Woonplaats", "Postcode", "Huisnummer", "Actief"
         };
-        Object[][] data = new Object[][]{
-            {"John Zonneschijn", "Stoerestraat 3", "Sexbierum", "1234AB", "3", "Actief"},
-            {"Plork Kurk", "Minderstoerestraat 1", "Rochel", "5855WW", "1", "Inactief"},
-            {"Tronald Dump", "Koeksnorlaan 44", "Rochel", "5897RR", "44", "Actief"},
-            {"Rabak Borama", "Kerststal 17", "Hengelooo", "7655RW", "17", "Inactief"}
-        };
-
-        JTable table = new JTable(data, columns) {
+        
+        DefaultTableModel model = new DefaultTableModel(); 
+        JTable table = new JTable(model) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-
+        
+        for(int i = 0; i < columns.length; i++){
+            model.addColumn(columns[i]);
+        }
+        
+        for(KlantModel klant : allCustomers){
+            model.addRow(new Object[]{
+                klant.getName(),
+                klant.getStreet(),
+                klant.getCity(),
+                klant.getZipCode(),
+                klant.getHouseNumber(),
+                klant.getActive()
+            });
+        }
+        
+        
         table.setAutoCreateRowSorter(true);
 
         table.addMouseListener(new MouseAdapter() {

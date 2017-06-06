@@ -48,9 +48,9 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     private JTextField cityField = new JTextField();
     private JTextField countryField = new JTextField();
 
-    private JButton editButton = new JButton();
-    private JButton savebutton = new JButton();
-    private JButton cancelbutton = new JButton();
+    private JButton editButton = new JButton("Wijzigen");
+    private JButton savebutton = new JButton("Opslaan");
+    private JButton cancelbutton = new JButton("Annuleren");
 
     private int screenWidth = 600;
     private int screenHeight = 500;
@@ -70,7 +70,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         topContainerPanel.add(lastNameField);
         topContainerPanel.add(nameAdditionLabel);
         topContainerPanel.add(nameAdditionField);
-        topContainerPanel.setPreferredSize(new Dimension(screenWidth - 10, (screenHeight / 3) * 2 - 20));
+        topContainerPanel.setPreferredSize(new Dimension(screenWidth - 10, (screenHeight / 3) * 2 - 90));
         JPanel multipleFieldContainer = new JPanel();
         multipleFieldContainer.setLayout(new GridLayout(2, 4, 0, 0));
 
@@ -81,12 +81,15 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         zipCodeContainerPanel.add(zipCodeField1);
         zipCodeContainerPanel.add(zipCodeField2);
 
+        cancelbutton.addActionListener(this);
+        
         JPanel buttonBarContainer = new JPanel();
-        buttonBarContainer.setLayout(new FlowLayout());
+        buttonBarContainer.setPreferredSize(new Dimension(screenWidth,50));
+        buttonBarContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
         buttonBarContainer.add(cancelbutton);
         buttonBarContainer.add(editButton);
         buttonBarContainer.add(savebutton);
-
+        
         multipleFieldContainer.add(zipCodeLabel);
         multipleFieldContainer.add(zipCodeContainerPanel);
         multipleFieldContainer.add(houseNumberLabel);
@@ -94,13 +97,13 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         multipleFieldContainer.add(new JLabel(" "));
         multipleFieldContainer.add(addressField);
         multipleFieldContainer.add(cityField);
-        multipleFieldContainer.add(countryField);
-        multipleFieldContainer.setPreferredSize(new Dimension(screenWidth - 10, screenHeight / 3 - 20));
+//        multipleFieldContainer.add(countryField);
+        multipleFieldContainer.setPreferredSize(new Dimension(screenWidth - 10, screenHeight / 3 - 100));
         add(topContainerPanel);
         add(multipleFieldContainer);
         add(buttonBarContainer);
 
-        setSize(new Dimension(screenWidth, screenHeight));
+        setSize(new Dimension(screenWidth, screenHeight-100));
         setLocationRelativeTo(null);
 
     }
@@ -155,7 +158,6 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
             String simpleStreetAndCity = apiConnector.validateAddress(zipCodeField1.getText() + "" + zipCodeField2.getText());
             if (!simpleStreetAndCity.equals("")) {
                 String[] streetAndCity = simpleStreetAndCity.split("STRINGDIVIDER");
-                System.out.println(streetAndCity.length);
                 if (streetAndCity.length == 2) {
                     addressField.setText(streetAndCity[0]);
                     cityField.setText(streetAndCity[1]);
@@ -172,7 +174,9 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == cancelbutton){
+            setVisible(false);
+        }
     }
 
 }

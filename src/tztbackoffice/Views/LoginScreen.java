@@ -36,6 +36,7 @@ public class LoginScreen extends JFrame implements ActionListener {
 
     public LoginScreen() {
         setSize(600, 200);
+        setLayout(new GridLayout(1,1,30,30));
         setTitle("TZT Backoffice - Inloggen");
         setResizable(false);
         setLocationRelativeTo(null);
@@ -44,7 +45,7 @@ public class LoginScreen extends JFrame implements ActionListener {
         loginPanel = new JPanel();
         loginFormContainer = new JPanel();
         buttonPanel = new JPanel();
-        loginFormContainer.setSize(new Dimension(400, 400));
+        loginFormContainer.setSize(new Dimension(400, 200));
         usernameLabel = new JLabel("Gebruikersnaam");
         usernameTextField = new JTextField();
         usernameTextField.addActionListener(this);
@@ -66,8 +67,6 @@ public class LoginScreen extends JFrame implements ActionListener {
         fps.setVisible(false);
         fps.setModal(false);
 
-        loginFormContainer.setMaximumSize(new Dimension(400, 400));
-
         loginPanel.setLayout(new GridLayout(2, 2, 5, 5));
         loginPanel.add(usernameLabel);
         loginPanel.add(usernameTextField);
@@ -80,11 +79,12 @@ public class LoginScreen extends JFrame implements ActionListener {
         errorPanel.add(notificationLabel);
         loginFormContainer.add(errorPanel);
 
-        buttonPanel.setLayout(new GridLayout(1, 3, 5, 5));
+        buttonPanel.setLayout(new GridLayout(1, 3));
         buttonPanel.add(loginButton);
         buttonPanel.add(forgotPasswordButton);
         buttonPanel.add(forgotUsernameButton);
         loginFormContainer.add(buttonPanel);
+        setPreferredSize(new Dimension(400, 200));
         setVisible(true);
     }
 
