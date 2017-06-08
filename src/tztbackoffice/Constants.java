@@ -10,11 +10,6 @@ package tztbackoffice;
  * @author Andy
  */
 public class Constants {
-
-    public static final String tempPassword = "beheerder";
-    public static final String tempUsername = "beheerder";
-    public static final String loginFailureMessage = "Logingegevens incorrect. Probeer het nogmaals";
-    
     //API
     public static final String API_BASE_URL = "https://www.tztpost.nl/java/";
     
