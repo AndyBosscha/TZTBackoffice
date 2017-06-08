@@ -32,18 +32,17 @@ public class ForgotUsernameScreen extends JDialog implements ActionListener {
     private LoginScreen loginScreen;
 
     public ForgotUsernameScreen(LoginScreen loginScreen) {
+        //Loginscreen gets passed to make it possible to use setVisible on that screen.
 
         this.loginScreen = loginScreen;
         setSize(500, 200);
         setTitle("TZT Backoffice - Gebruikersnaam vergeten");
         setResizable(false);
         setLocationRelativeTo(null);
-//        setModal(true);
         setLayout(new GridLayout(4, 1, 5, 5));
 
         headerLabel = new JLabel("Gebruikersnaam vergeten", SwingConstants.CENTER);
         infoLabel = new JLabel("U dient een emailadres op te geven voor het opvragen van uw gebruikersnaam.", SwingConstants.CENTER);
-//        infoLabel = new JLabel("<html>U dient een e-mailadres op te geven <br />voor het opvragen van uw gebruikersnaam</html>", SwingConstants.CENTER);
         messagePanel = new JPanel();
         messagePanel.setLayout(new GridLayout(2, 1, 5, 5));
         messagePanel.add(headerLabel);
@@ -72,13 +71,13 @@ public class ForgotUsernameScreen extends JDialog implements ActionListener {
         buttonPanel.add(sendButton);
         add(buttonPanel);
 
-//        setLayout(new GridLayout(1, 2, 5, 5));
         setAlwaysOnTop(true);
         setVisible(true);
 
     }
 
     private void cancelButton() {
+        //If the cancel button has been pressed
         setVisible(false);
         setModal(false);
         loginScreen.setVisible(true);
@@ -86,6 +85,7 @@ public class ForgotUsernameScreen extends JDialog implements ActionListener {
     }
 
     private void sendButton() {
+        //If the send button has been pressed
         setVisible(false);
         setModal(false);
         loginScreen.setVisible(true);

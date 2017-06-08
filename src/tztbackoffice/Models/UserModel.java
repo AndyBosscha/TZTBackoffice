@@ -6,7 +6,7 @@
 package tztbackoffice.Models;
 
 /**
- *
+ * This is the model for a User
  * @author Andy
  */
 public class UserModel {

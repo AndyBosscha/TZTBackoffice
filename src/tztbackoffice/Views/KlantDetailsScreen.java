@@ -82,7 +82,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         zipCodeContainerPanel.add(zipCodeField2);
 
         cancelbutton.addActionListener(this);
-        
+        //Create and add container for the buttons
         JPanel buttonBarContainer = new JPanel();
         buttonBarContainer.setPreferredSize(new Dimension(screenWidth,50));
         buttonBarContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -90,6 +90,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
         buttonBarContainer.add(editButton);
         buttonBarContainer.add(savebutton);
         
+        //Create and add container for address fields
         multipleFieldContainer.add(zipCodeLabel);
         multipleFieldContainer.add(zipCodeContainerPanel);
         multipleFieldContainer.add(houseNumberLabel);
@@ -114,6 +115,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     }
 
     private String getSecondZipCodePart(String zipCode) {
+        //get letters from zip code
         int beginIndex = 4;
         if (zipCode.contains(" ")) {
             beginIndex = 5;
@@ -122,6 +124,7 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     }
 
     public void showAndUpdateKlant(KlantModel newKlant) {
+        
         selectedKlant = newKlant;
 
         firstNameField.setText(selectedKlant.getFirstname());

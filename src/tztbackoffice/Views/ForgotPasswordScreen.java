@@ -32,8 +32,9 @@ public class ForgotPasswordScreen extends JDialog implements ActionListener {
     private LoginScreen loginScreen;
 
     public ForgotPasswordScreen(LoginScreen loginScreen) {
-
+        //Loginscreen gets passed to make it possible to use setVisible on that screen.
         this.loginScreen = loginScreen;
+        
         setSize(500, 200);
         setTitle("TZT Backoffice - Wachtwoord vergeten");
         setResizable(false);
@@ -42,12 +43,14 @@ public class ForgotPasswordScreen extends JDialog implements ActionListener {
 
         headerLabel = new JLabel("Wachtwoord vergeten", SwingConstants.CENTER);
         infoLabel = new JLabel("U dient een emailadres op te geven voor het opvragen van uw wachtwoord.", SwingConstants.CENTER);
+        //Add panel to contain message
         messagePanel = new JPanel();
         messagePanel.setLayout(new GridLayout(2, 1, 5, 5));
         messagePanel.add(headerLabel);
         messagePanel.add(infoLabel);
         add(messagePanel);
 
+        //Add panel to contain notification
         notificationLabel = new JLabel();
         notificationPanel = new JPanel();
         notificationPanel.setLayout(new GridLayout(1, 1, 5, 5));
@@ -70,13 +73,13 @@ public class ForgotPasswordScreen extends JDialog implements ActionListener {
         buttonPanel.add(sendButton);
         add(buttonPanel);
 
-//        setLayout(new GridLayout(1, 2, 5, 5));
         setAlwaysOnTop(true);
         setVisible(true);
 
     }
 
     private void cancelButton() {
+        //If the cancel button has been pressed
         setVisible(false);
         setModal(false);
         loginScreen.setVisible(true);
@@ -84,6 +87,7 @@ public class ForgotPasswordScreen extends JDialog implements ActionListener {
     }
 
     private void sendButton() {
+        //If the send button has been pressed
         setVisible(false);
         setModal(false);
         loginScreen.setVisible(true);
