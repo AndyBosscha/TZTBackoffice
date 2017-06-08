@@ -6,7 +6,7 @@
 package tztbackoffice.Models;
 
 /**
- *
+ * This is the model for a Courier
  * @author Andy
  */
 public class KoerierModel {

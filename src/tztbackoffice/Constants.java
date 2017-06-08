@@ -10,7 +10,7 @@ package tztbackoffice;
  * @author Andy
  */
 public class Constants {
-    //API
+    //These are the api constants:
     public static final String API_BASE_URL = "https://www.tztpost.nl/java/";
     
     public static final String GET_ALL_CUSTOMERS_FUNCTION_NAME = "getAllCustomers";

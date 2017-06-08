@@ -8,7 +8,7 @@ package tztbackoffice.Models;
 import java.util.Date;
 
 /**
- *
+ * This is the model for a Package
  * @author Andy
  */
 public class PackageModel {

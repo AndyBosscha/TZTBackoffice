@@ -11,6 +11,7 @@ package tztbackoffice.Controllers;
  */
 public class LoginController {
     
+    //Check if username and password are correct
     public static boolean checkLoginCredentials(String username, String password){
         return password.equals("beheerder") && username.equals("beheerder");
     }
