@@ -10,19 +10,70 @@ package tztbackoffice.Models;
  * @author Andy
  */
 public class KlantModel {
-    private String name;
+    private String idUser;
+    private String email; 
+    private String firstname;
+    private String middlename;
+    private String lastname;
     private String street;
-    private String houseNumber;
-    private String zipCode;
-    private String active;
+    private String housenumber;
+    private String zipcode;
     private String city;
+    private String phonenumber;
+    private String gender;
+    private String accountType;
+    private String companyName;
+    private String kvKNumber;
+    private String kvKDocument;
+    private String paymentPreference;
+    private String active;
 
-    public String getName() {
-        return name;
+    public String getActive() {
+        return active;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActive(String active) {
+        this.active = active;
+    }
+    
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getStreet() {
@@ -33,28 +84,20 @@ public class KlantModel {
         this.street = street;
     }
 
-    public String getHouseNumber() {
-        return houseNumber;
+    public String getHousenumber() {
+        return housenumber;
     }
 
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
+    public void setHousenumber(String housenumber) {
+        this.housenumber = housenumber;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getZipcode() {
+        return zipcode;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getActive() {
-        return active;
-    }
-
-    public void setActive(String active) {
-        this.active = active;
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
     public String getCity() {
@@ -64,4 +107,61 @@ public class KlantModel {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getKvKNumber() {
+        return kvKNumber;
+    }
+
+    public void setKvKNumber(String kvKNumber) {
+        this.kvKNumber = kvKNumber;
+    }
+
+    public String getKvKDocument() {
+        return kvKDocument;
+    }
+
+    public void setKvKDocument(String kvKDocument) {
+        this.kvKDocument = kvKDocument;
+    }
+
+    public String getPaymentPreference() {
+        return paymentPreference;
+    }
+
+    public void setPaymentPreference(String paymentPreference) {
+        this.paymentPreference = paymentPreference;
+    }
+   
 }

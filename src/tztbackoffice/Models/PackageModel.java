@@ -22,7 +22,117 @@ public class PackageModel {
     private Date pickUpDate;
     private Date deliveryDate;
     private String isDelivered;
+    
+    private String afzFirstname;
+    private String afzLastname;
+    private String afzStreetname;
+    private String afzHousenumber;
+    private String afzZipcode;
+    private String afzCity;
+    
+    private String addrFirstname;
+    private String addrLastName;
+    private String addrStreetname;
+    private String addrHousenumber;
+    private String addrZipcode;
+    private String addrCity;
 
+    public String getAfzFirstname() {
+        return afzFirstname;
+    }
+
+    public void setAfzFirstname(String afzFirstname) {
+        this.afzFirstname = afzFirstname;
+    }
+
+    public String getAfzLastname() {
+        return afzLastname;
+    }
+
+    public void setAfzLastname(String afzLastname) {
+        this.afzLastname = afzLastname;
+    }
+
+    public String getAfzStreetname() {
+        return afzStreetname;
+    }
+
+    public void setAfzStreetname(String afzStreetname) {
+        this.afzStreetname = afzStreetname;
+    }
+
+    public String getAfzHousenumber() {
+        return afzHousenumber;
+    }
+
+    public void setAfzHousenumber(String afzHousenumber) {
+        this.afzHousenumber = afzHousenumber;
+    }
+
+    public String getAfzZipcode() {
+        return afzZipcode;
+    }
+
+    public void setAfzZipcode(String afzZipcode) {
+        this.afzZipcode = afzZipcode;
+    }
+
+    public String getAfzCity() {
+        return afzCity;
+    }
+
+    public void setAfzCity(String afzCity) {
+        this.afzCity = afzCity;
+    }
+
+    public String getAddrFirstname() {
+        return addrFirstname;
+    }
+
+    public void setAddrFirstname(String addrFirstname) {
+        this.addrFirstname = addrFirstname;
+    }
+
+    public String getAddrLastName() {
+        return addrLastName;
+    }
+
+    public void setAddrLastName(String addrLastName) {
+        this.addrLastName = addrLastName;
+    }
+
+    public String getAddrStreetname() {
+        return addrStreetname;
+    }
+
+    public void setAddrStreetname(String addrStreetname) {
+        this.addrStreetname = addrStreetname;
+    }
+
+    public String getAddrHousenumber() {
+        return addrHousenumber;
+    }
+
+    public void setAddrHousenumber(String addrHousenumber) {
+        this.addrHousenumber = addrHousenumber;
+    }
+
+    public String getAddrZipcode() {
+        return addrZipcode;
+    }
+
+    public void setAddrZipcode(String addrZipcode) {
+        this.addrZipcode = addrZipcode;
+    }
+
+    public String getAddrCity() {
+        return addrCity;
+    }
+
+    public void setAddrCity(String addrCity) {
+        this.addrCity = addrCity;
+    }
+    
     public String getIsDelivered() {
         return isDelivered;
     }

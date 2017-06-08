@@ -124,14 +124,14 @@ public class KlantDetailsScreen extends JDialog implements ActionListener {
     public void showAndUpdateKlant(KlantModel newKlant) {
         selectedKlant = newKlant;
 
-        firstNameField.setText(selectedKlant.getName());
-        lastNameField.setText("TO DO");
-        nameAdditionField.setText("TO DO");
-        zipCodeField1.setText(getFirstZipcodePart(selectedKlant.getZipCode()));
-        zipCodeField2.setText(getSecondZipCodePart(selectedKlant.getZipCode()));
+        firstNameField.setText(selectedKlant.getFirstname());
+        lastNameField.setText(selectedKlant.getLastname());
+        nameAdditionField.setText(selectedKlant.getMiddlename());
+        zipCodeField1.setText(getFirstZipcodePart(selectedKlant.getZipcode()));
+        zipCodeField2.setText(getSecondZipCodePart(selectedKlant.getZipcode()));
         zipCodeField1.getDocument().addDocumentListener(zipListener);
         zipCodeField2.getDocument().addDocumentListener(zipListener);
-        houseNumberField.setText(selectedKlant.getHouseNumber());
+        houseNumberField.setText(selectedKlant.getHousenumber());
 
         setVisible(true);
     }

@@ -121,19 +121,7 @@ public class OverviewKoerierPanel extends JPanel implements ActionListener {
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-                    //Make an object from the data in the selected row, then pass it to the details screen.
-                    //Not best practice! 
-                    selectedKoerier.setFirstName(table.getValueAt(row, 0).toString());
-                    selectedKoerier.setIdUser(Integer.parseInt(table.getValueAt(row, 1).toString()));
-                    selectedKoerier.setCity(table.getValueAt(row, 2).toString());
-                    selectedKoerier.setDateOfBirth(table.getValueAt(row, 3).toString());
-                    selectedKoerier.setStartDate(table.getValueAt(row, 4).toString());
-                    selectedKoerier.setAmountOfAcceptedPackages(Integer.parseInt(table.getValueAt(row, 5).toString()));
-                    selectedKoerier.setAmountOfDeliveredPackages(Integer.parseInt(table.getValueAt(row, 6).toString()));
-                    selectedKoerier.setStatus(table.getValueAt(row, 7).toString());
-                    koerierDetailsScreen.showAndChangeSelectedKoerier(selectedKoerier);
-                    //koerierDetailsScreen.showAndChangeSelectedKoerier(con.getCourierDetails(table.getValueAt(row, 1).toString()));
-                    //The commented code above does not work, because the API does not work correctly.
+                    koerierDetailsScreen.showAndChangeSelectedKoerier(con.getCourierDetails(table.getValueAt(row, 1).toString()));
                 }
             }
         });

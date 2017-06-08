@@ -12,6 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -267,8 +269,39 @@ public class PackageDetailScreen extends JDialog implements ActionListener {
         dimensiesHoogteTextfield.setText(selectedPackage.getHeight() + "");
         dimensiesLengteTextfield.setText(selectedPackage.getLength() + "");
         bezorgdTextfield.setText(selectedPackage.getIsDelivered());
+        
+        afzenderVoornaamTextfield.setText(selectedPackage.getAfzFirstname());
+        afzenderAchternaamTextfield.setText(selectedPackage.getAfzLastname());
+        afkomstStraatnaamTextfield.setText(selectedPackage.getAfzStreetname());
+        afkomstHuisnummerTextfield.setText(selectedPackage.getAfzHousenumber());
+        afkomstPostcodeTextfield.setText(selectedPackage.getAfzZipcode());
+        afkomstWoonplaatsTextfield.setText(selectedPackage.getAfzCity());
+        geaddresseerdeVoornaamTextfield.setText(selectedPackage.getAddrFirstname());
+        geaddresseerdeAchternaamTextfield.setText(selectedPackage.getAddrLastName());
+        bestemmingStraatnaamTextfield.setText(selectedPackage.getAddrStreetname());
+        bestemmingHuisnummerTextfield.setText(selectedPackage.getAddrHousenumber());
+        bestemmingPostcodeTextfield.setText(selectedPackage.getAddrZipcode());
+        bestemmingWoonplaatsTextfield.setText(selectedPackage.getAddrCity());
+        aanmelddatumTextfield.setText(extractDateFromDateTime(selectedPackage.getSignupDateTime()));
+        aanmeldtijdTextfield.setText(extractTimeFromDateTime(selectedPackage.getSignupDateTime()));
+        bezorgmomentTextfield.setText(extractDateFromDateTime(selectedPackage.getDeliveryDate()));
+        signaleringTextfield.setText("N/A");
+        verzendkostenTextfield.setText("N/A");
+        
+        
+        
         setVisible(true);
 
+    }
+    
+    private String extractTimeFromDateTime(Date date){
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+        return localDateFormat.format(date);
+    }
+    
+    private String extractDateFromDateTime(Date date){
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("dd/mm/YYYY");
+        return localDateFormat.format(date);
     }
 
 }

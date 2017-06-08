@@ -56,7 +56,7 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
         ArrayList<KlantModel> allCustomers = con.getAllCustomers();
 
         String[] columns = {
-            "Naam", "Adres", "Woonplaats", "Postcode", "Huisnummer", "Actief"
+            "ID","Naam", "Adres", "Woonplaats", "Postcode", "Huisnummer", "Actief"
         };
         
         DefaultTableModel model = new DefaultTableModel(); 
@@ -72,11 +72,12 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
         
         for(KlantModel klant : allCustomers){
             model.addRow(new Object[]{
-                klant.getName(),
+                klant.getIdUser(),
+                klant.getFirstname() + " " + klant.getMiddlename() + " " + klant.getLastname(),
                 klant.getStreet(),
                 klant.getCity(),
-                klant.getZipCode(),
-                klant.getHouseNumber(),
+                klant.getZipcode(),
+                klant.getHousenumber(),
                 klant.getActive()
             });
         }
@@ -90,13 +91,7 @@ public class OverviewKlantenPanel extends JPanel implements ActionListener {
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-                    selectedKlant.setName(table.getValueAt(row, 0).toString());
-                    selectedKlant.setStreet(table.getValueAt(row, 1).toString());
-                    selectedKlant.setCity(table.getValueAt(row, 2).toString());
-                    selectedKlant.setZipCode(table.getValueAt(row, 3).toString());
-                    selectedKlant.setHouseNumber(table.getValueAt(row, 4).toString());
-                    selectedKlant.setActive(table.getValueAt(row, 5).toString());
-                    detailScreen.showAndUpdateKlant(selectedKlant);
+                    detailScreen.showAndUpdateKlant(con.getCustomerDetails(table.getValueAt(row, 0).toString()));
                 }
             }
         });
